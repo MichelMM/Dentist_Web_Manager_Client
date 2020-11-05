@@ -10,6 +10,8 @@ import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { DentistsComponent } from './pages/dentists/dentists.component';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
+import { MyAppointmentsComponent } from './pages/user/my-appointments/my-appointments.component';
+import { Page404Component } from './pages/page404/page404.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -20,8 +22,9 @@ const routes: Routes = [
   { path: 'About', component: AboutComponent },
   { path: 'Services', component: ServicesComponent },
   { path: 'Dentists', component: DentistsComponent },
-  { path: 'Appointment', component: AppointmentComponent}/*,
-  { path: '**', component: Page404Component};*/
+  { path: 'Appointment', component: AppointmentComponent},
+  { path: 'myAppointment', component: MyAppointmentsComponent},
+  { path: '**', component: Page404Component}
 ]
 
 @NgModule({

@@ -13,6 +13,7 @@ import { ServicesComponent } from './pages/services/services.component';
 import {​​ HttpClientModule }​​ from '@angular/common/http';
 import { DentistsComponent } from './pages/dentists/dentists.component';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
+import { MyAppointmentsComponent } from './pages/user/my-appointments/my-appointments.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AppointmentComponent } from './pages/appointment/appointment.component'
     AboutComponent,
     ServicesComponent,
     DentistsComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    MyAppointmentsComponent
   ],
   imports: [
     BrowserModule,
