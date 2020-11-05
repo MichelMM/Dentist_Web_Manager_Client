@@ -10,6 +10,7 @@ import { GalleryComponent } from './pages/gallery/gallery.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
+import { DentistsComponent } from './pages/dentists/dentists.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ServicesComponent } from './pages/services/services.component';
     GalleryComponent,
     ContactComponent,
     AboutComponent,
-    ServicesComponent
+    ServicesComponent,
+    DentistsComponent
   ],
   imports: [
     BrowserModule,
