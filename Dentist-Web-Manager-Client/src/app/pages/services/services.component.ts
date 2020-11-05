@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from './../../services/api.service';
 
 @Component({
   selector: 'app-services',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiServ:ApiService) { }
 
   ngOnInit(): void {
+    this.apiServ.getDentist(JSON.stringify({Dentist_ID:1})).then(data=>{
+      console.log(data)
+    }).catch((e)=>{
+      console.log(e)
+    })
   }
 
 }
