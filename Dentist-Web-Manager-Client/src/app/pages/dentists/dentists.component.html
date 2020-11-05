@@ -12,7 +12,21 @@
 
       <div class="row">
 
-        <div class="col-lg-6">
+        <div *ngFor="let item of dentists" class="col-lg-6">
+          <div class="member d-flex align-items-start">
+            <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
+            <div class="member-info">
+              <h4>{{item.Name}}</h4>
+              <span>Especialidad</span>
+              <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+              <div class="social">
+                <a href=""><i class="ri-instagram-fill"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-6">
           <div class="member d-flex align-items-start">
             <div class="pic"><img src="assets/img/doctors/doctors-1.jpg" class="img-fluid" alt=""></div>
             <div class="member-info">
@@ -78,7 +92,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </div>
 
