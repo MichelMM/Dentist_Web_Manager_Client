@@ -15,4 +15,12 @@ export class ApiService {
   getDentist(filter:string):any{
     return this.http.get("http://localhost:3000/api/dentist?filter="+filter).toPromise()
   }
+
+  getAppointments():any{
+    return this.http.get("http://localhost:3000/api/appointments").toPromise()
+  }
+
+  getPatients():any{
+    return this.http.get("http://localhost:3000/api/patients").toPromise()
+  }
 }
