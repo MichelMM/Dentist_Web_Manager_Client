@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Dentist-Web-Manager-Client"
+    }
+  },
+  "defaultProject": "Dentist-Web-Manager-Client",
+  "cli": {
+    "analytics": false
+  }
 }
