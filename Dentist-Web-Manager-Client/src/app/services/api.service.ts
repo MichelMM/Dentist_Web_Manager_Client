@@ -20,7 +20,17 @@ export class ApiService {
     return this.http.get("http://localhost:3000/api/appointments").toPromise()
   }
 
+  sendAppointment(body):any{
+    return this.http.post("http://localhost:3000/api/appointment",body).toPromise()
+  }
+
   getPatients():any{
     return this.http.get("http://localhost:3000/api/patients").toPromise()
   }
+
+  getPatient(filter:string):any{
+    return this.http.get("http://localhost:3000/api/patient?filter="+filter).toPromise()
+  }
+
+  
 }

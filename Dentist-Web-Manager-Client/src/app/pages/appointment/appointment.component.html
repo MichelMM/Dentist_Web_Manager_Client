@@ -10,18 +10,18 @@
         <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
       </div>
 
-      <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
+      <form (submit)="sendAppointment()" role="form" class="php-email-form">
         <div class="form-row">
           <div class="col-md-4 form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+            <input type="text" name="name" class="form-control" id="name" placeholder="{{patient.Name}} {{patient.Last_name}}" data-rule="minlen:4"  disabled>
             <div class="validate"></div>
           </div>
           <div class="col-md-4 form-group">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+            <input type="email" class="form-control" name="email" id="email" placeholder="{{patient.Email}}" data-rule="email"  disabled>
             <div class="validate"></div>
           </div>
           <div class="col-md-4 form-group">
-            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+            <input type="tel" class="form-control" name="phone" id="phone" placeholder="{{patient.Phone_number}}" data-rule="minlen:4"  disabled> 
             <div class="validate"></div>
           </div>
         </div>
@@ -31,20 +31,9 @@
             <div class="validate"></div>
           </div>
           <div class="col-md-4 form-group">
-            <select name="department" id="department" class="form-control">
-              <option value="">Select Department</option>
-              <option value="Department 1">Department 1</option>
-              <option value="Department 2">Department 2</option>
-              <option value="Department 3">Department 3</option>
-            </select>
-            <div class="validate"></div>
-          </div>
-          <div class="col-md-4 form-group">
             <select name="doctor" id="doctor" class="form-control">
               <option value="">Select Doctor</option>
-              <option value="Doctor 1">Doctor 1</option>
-              <option value="Doctor 2">Doctor 2</option>
-              <option value="Doctor 3">Doctor 3</option>
+              <option *ngFor="let item of dentists" value="Doctor 1">{{item.Name}} {{item.Last_name}}</option>
             </select>
             <div class="validate"></div>
           </div>
