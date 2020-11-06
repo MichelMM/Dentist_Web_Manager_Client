@@ -25,7 +25,8 @@ export class MyAppointmentsComponent implements OnInit {
   requestAppointments(): void{ //PROFE AIUDAAAAAAAAAA
     this.apiServ.getAppointments().then(data=>{
       this.appointments = data
-      // console.log(data)
+      console.log("Just appointments")
+      console.log(this.appointments)
       this.apiServ.getDentists().then(data=>{
         this.dentists = data
         // console.log(data)
@@ -46,6 +47,7 @@ export class MyAppointmentsComponent implements OnInit {
 
   getAppointDentist(): void{
     console.log("entrando")
+    console.log(this.appointments)
     this.appointments.forEach(appointment => {
       let obj={}
       obj["Cause"]=appointment.Cause;

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {​​ HttpClient }​​ from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +22,13 @@ export class ApiService {
     return this.http.get("http://localhost:3000/api/appointments").toPromise()
   }
 
-  sendAppointment(body):any{
-    return this.http.post("http://localhost:3000/api/appointment",body).toPromise()
+  sendAppointment(body):any{  
+    // console.log(body)
+    body = JSON.stringify({data:body})
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type':  'application/json'})
+    }
+    return this.http.post("http://localhost:3000/api/appointment",body,httpOptions).toPromise()
   }
 
   getPatients():any{

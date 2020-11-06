@@ -1,6 +1,8 @@
 <br>
 <br>
 <br>
+<br>
+<br>
 <!-- ======= Appointment Section ======= -->
 <section id="appointment" class="appointment section-bg">
     <div class="container">
@@ -27,20 +29,20 @@
         </div>
         <div class="form-row">
           <div class="col-md-4 form-group">
-            <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+            <input [(ngModel)]="date" type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
             <div class="validate"></div>
           </div>
           <div class="col-md-4 form-group">
-            <select name="doctor" id="doctor" class="form-control">
+            <select [(ngModel)]="doctor" name="doctor" id="doctor" class="form-control">
               <option value="">Select Doctor</option>
-              <option *ngFor="let item of dentists" value="Doctor 1">{{item.Name}} {{item.Last_name}}</option>
+              <option *ngFor="let item of dentists" value="{{item.Dentist_ID}}">{{item.Name}} {{item.Last_name}}</option>
             </select>
             <div class="validate"></div>
           </div>
         </div>
 
         <div class="form-group">
-          <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+          <textarea [(ngModel)]="cause" class="form-control" name="message" rows="5" placeholder="Cause"></textarea>
           <div class="validate"></div>
         </div>
         <div class="mb-3">

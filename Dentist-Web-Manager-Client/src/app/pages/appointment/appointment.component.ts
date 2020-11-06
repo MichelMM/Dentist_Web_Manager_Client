@@ -12,6 +12,10 @@ export class AppointmentComponent implements OnInit {
   dentists: any[] = [];
   patient: any = {};
 
+  doctor:string="";
+  date:string;
+  cause:string;
+
   ngOnInit(): void {
     this.getDentists();
     this.getPatient(JSON.stringify({}));
@@ -36,8 +40,8 @@ export class AppointmentComponent implements OnInit {
   }
   
   sendAppointment(){
-    
-    this.apiServ.sendAppointment({}).then(data=>{
+    let ID = Number(this.doctor)
+    this.apiServ.sendAppointment({Dentist_ID:ID,Patient_ID:this.patient.Patient_ID,Date:this.date,Cause:this.cause}).then(data=>{
       console.log(data);
     }).catch((e)=>{
       console.log(e)
