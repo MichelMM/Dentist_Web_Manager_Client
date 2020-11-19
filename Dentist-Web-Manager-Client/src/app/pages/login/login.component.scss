@@ -13,7 +13,7 @@
   
   form#login-form {
     background: #fff;
-    width: 40em;
+    width: 50%;
     margin: 2em auto;
     overflow: hidden;
     position: relative;
@@ -58,7 +58,7 @@
     margin: auto;
   }
   form#login-form:before {
-    content: "or";
+    content: "o";
     color: gray;
     height: 0.5em;
     width: 0.5em;

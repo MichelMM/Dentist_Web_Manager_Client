@@ -16,7 +16,8 @@ import { AppointmentComponent } from './pages/appointment/appointment.component'
 import { MyAppointmentsComponent } from './pages/user/my-appointments/my-appointments.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -31,14 +32,16 @@ import { FormsModule } from '@angular/forms';
     DentistsComponent,
     AppointmentComponent,
     MyAppointmentsComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

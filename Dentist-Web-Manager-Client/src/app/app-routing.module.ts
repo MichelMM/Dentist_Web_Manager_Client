@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HomeComponent } from './pages/home/home.component'
 import { FaqComponent } from './pages/faq/faq.component'
 import { GalleryComponent } from './pages/gallery/gallery.component'
@@ -13,6 +12,7 @@ import { AppointmentComponent } from './pages/appointment/appointment.component'
 import { MyAppointmentsComponent } from './pages/user/my-appointments/my-appointments.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 
 const routes: Routes = [
@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'Appointment', component: AppointmentComponent},
   { path: 'myAppointment', component: MyAppointmentsComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent},
   { path: '**', component: Page404Component}
 ]
 
