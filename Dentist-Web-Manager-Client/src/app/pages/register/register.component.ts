@@ -57,11 +57,11 @@ comprobarRFC() {
 }
 
   createUser(){
-    console.log(this.forma.controls.RFC.untouched)
+    // console.log(this.forma.controls.RFC.untouched)
     if(this.forma.valid){
-      console.log("WASAAAAAAAAAAAAAAAAAAAAAAAAAA")
+      console.log("Llamar a crear usuario")
     }else{
-      console.log("WASAAAAAAAAAAAAAAAAAAAAAAAAAASN'T")
+      console.log("Error en formulario crear usuario")
     }
     
   }

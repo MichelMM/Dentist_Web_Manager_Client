@@ -76,7 +76,7 @@
       </div> <!-- form-group// -->
       <p *ngIf="forma.errors && forma.errors.mismatch">Las contraseñas no coinciden</p>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block"> Crear cuenta </button>
+        <button [disabled]="forma.invalid" type="submit" class="btn btn-primary btn-block"> Crear cuenta </button>
       </div> <!-- form-group// -->
       <p class="text-center">¿Ya tienes una cuenta? <a [routerLink]="['../login']">Ingresar</a> </p>
     </form>
