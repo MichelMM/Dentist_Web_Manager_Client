@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {​​ HttpClient }​​ from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import { environment } from "../../environments/environment"
 
 
 @Injectable({
@@ -11,15 +12,15 @@ export class ApiService {
   constructor(private http:HttpClient) { }
 
   getDentists():any{
-    return this.http.get("http://localhost:3000/api/dentists").toPromise()
+    return this.http.get(`${environment.API_URL}/dentists`).toPromise()
   }
 
   getDentist(filter:string):any{
-    return this.http.get("http://localhost:3000/api/dentist?filter="+filter).toPromise()
+    return this.http.get(`${environment.API_URL}/dentist?filter=`+filter).toPromise()
   }
 
   getAppointments():any{
-    return this.http.get("http://localhost:3000/api/appointments").toPromise()
+    return this.http.get(`${environment.API_URL}/appointments`).toPromise()
   }
 
   sendAppointment(body):any{  
@@ -28,15 +29,15 @@ export class ApiService {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type':  'application/json'})
     }
-    return this.http.post("http://localhost:3000/api/appointment",body,httpOptions).toPromise()
+    return this.http.post(`${environment.API_URL}/appointment`,body,httpOptions).toPromise()
   }
 
   getPatients():any{
-    return this.http.get("http://localhost:3000/api/patients").toPromise()
+    return this.http.get(`${environment.API_URL}/patients`).toPromise()
   }
 
   getPatient(filter:string):any{
-    return this.http.get("http://localhost:3000/api/patient?filter="+filter).toPromise()
+    return this.http.get(`${environment.API_URL}/patient?filter=`+filter).toPromise()
   }
 
   
