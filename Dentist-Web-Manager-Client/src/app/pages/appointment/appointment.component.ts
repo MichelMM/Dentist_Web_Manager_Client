@@ -40,6 +40,7 @@ export class AppointmentComponent implements OnInit {
   }
   
   sendAppointment(){
+    console.log(this.date);
     let ID = Number(this.doctor)
     this.apiServ.sendAppointment({Dentist_ID:ID,Patient_ID:this.patient.Patient_ID,Date:this.date,Cause:this.cause}).then(data=>{
       console.log(data);
