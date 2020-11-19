@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faUser, faEnvelope, faCalendar, faUserCircle } from '@fortawesome/free-regular-svg-icons';
 import {faPhone, faLock, faWallet} from '@fortawesome/free-solid-svg-icons'
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
+import { SignupService } from "../../services/signup.service"
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
   faUserCircle = faUserCircle;
 
   forma:FormGroup;
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder:FormBuilder, private signupService:SignupService) { }
 
   
   ngOnInit(): void {
@@ -57,12 +58,26 @@ comprobarRFC() {
 }
 
   createUser(){
-    // console.log(this.forma.controls.RFC.untouched)
+    const values = this.forma.getRawValue();
     if(this.forma.valid){
       console.log("Llamar a crear usuario")
+      this.signupService.signup({
+        Name: values.Name,
+        Last_name: values.Last_name,
+        Phone_number: values.Phone_number,
+        Email: values.Email,
+        Birth_date: {date: values.Birth_date},//********Modificar esto por temas de fomrato de la fecha **********************/
+        RFC: values.RFC,
+        Password: values.Password
+      }).then((res)=>{
+        console.log("Usuario creado correctamente:")
+        console.log(res)
+      }).catch((err)=>{
+        console.log("Error:")
+        console.log(err)
+      })
     }else{
       console.log("Error en formulario crear usuario")
     }
-    
   }
 }
