@@ -9,9 +9,9 @@
     <div class="heading">Ingresar</div>
     <div class="left">
       <label for="email">Correo Electrónico</label> <br />
-      <input type="email" name="email" id="email" formControlName="email"/> <br />
+      <input type="email" name="email" id="email" formControlName="Email"/> <br />
       <label for="password">Contraseña</label> <br />
-      <input type="password" name="password" id="pass" formControlName="password"/> <br />
+      <input type="password" name="password" id="pass" formControlName="Password"/> <br />
       <input type="submit" [disabled]="form.invalid" value="Ingresar" />
       <a [routerLink]="['../register']"><input style="margin-left: 10px;" type="submit" value="Registro" /></a>
     </div>

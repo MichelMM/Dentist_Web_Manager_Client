@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", Validators.required]
+      Email: ["", [Validators.required, Validators.email]],
+      Password: ["", Validators.required]
     });
 
     this.socialAuthService.authState.subscribe((user) => {
