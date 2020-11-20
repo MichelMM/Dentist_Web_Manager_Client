@@ -4,7 +4,7 @@ import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from "@angular/router"
- 
+
 import { SocialAuthService, GoogleLoginProvider } from "angularx-social-login";
 
 @Component({
@@ -16,14 +16,14 @@ export class LoginComponent implements OnInit {
   faFacebook = faFacebook;
   faGoogle = faGoogle;
 
-  form:FormGroup
+  form: FormGroup
 
   constructor(
-    private formBuilder:FormBuilder, 
-    private loginService:LoginService, 
-    private authService:AuthService, 
-    private router:Router,
-    private socialAuthService:SocialAuthService) { }
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private authService: AuthService,
+    private router: Router,
+    private socialAuthService: SocialAuthService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -32,25 +32,36 @@ export class LoginComponent implements OnInit {
     });
 
     this.socialAuthService.authState.subscribe((user) => {
-      console.log("Usuaior de google:")
+      console.log("Usuario de google:")
       console.log(user)
+      if(user!==null){
+        this.loginService.googleLogin(user).then((token) => {
+          console.log("Inicio de sesión correcto, token:")
+          console.log(token)
+          this.authService.save(token);
+          this.router.navigate(["/Home"])
+        }).catch((err) => {
+          console.log("Error:")
+          console.log(err)
+        })
+      }
     });
   }
 
-  login(){
+  login() {
     const values = this.form.getRawValue();
-    this.loginService.login(values).then((token)=>{
+    this.loginService.login(values).then((token) => {
       console.log("Inicio de sesión correcto, token:")
       console.log(token)
       this.authService.save(token);
       this.router.navigate(["/Home"])
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log("Error:")
       console.log(err)
     })
   }
 
-  googleLogin(){
+  googleLogin() {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 }

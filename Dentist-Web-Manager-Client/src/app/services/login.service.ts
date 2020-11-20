@@ -17,4 +17,13 @@ export class LoginService {
     }
     return this.http.post(`${environment.API_URL}/auth`,body,httpOptions).toPromise()
   }
+
+
+  googleLogin(body:any):Promise<any>{
+    body = JSON.stringify(body)
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type':  'application/json'})
+    }
+    return this.http.post(`${environment.API_URL}/auth/google`,body,httpOptions).toPromise()
+  }
 }

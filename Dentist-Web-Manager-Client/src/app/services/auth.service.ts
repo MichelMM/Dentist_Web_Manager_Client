@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SocialAuthService } from 'angularx-social-login';
 import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ export class AuthService {
 
   loginStatus:BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor() {
+  constructor(private socialAuthService:SocialAuthService) {
     this.loginStatus.next(this.isLoggedIn());
   }
 
@@ -26,6 +27,7 @@ export class AuthService {
   
   clear() {
     localStorage.removeItem('token');
+    this.socialAuthService.signOut();
     this.loginStatus.next(false);
   }
 }
