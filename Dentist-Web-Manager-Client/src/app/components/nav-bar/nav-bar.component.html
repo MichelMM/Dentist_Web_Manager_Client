@@ -1,26 +1,55 @@
 <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
+  <div class="container d-flex align-items-center">
+    <div id="hamb">
+      <!-- Collapse button -->
+      <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false"
+        aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fas fa-bars fa-1x"></i></span>
+        <fa-icon [icon]="faBars"></fa-icon>
+      </button>
 
-      <h1 class="logo mr-auto"><a [routerLink]="['Home']">Medilab</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent1">
 
-      <nav class="nav-menu d-none d-lg-block">
-        <ul id="listaBotones">
-          <li id="gH" class="active"><a [routerLink]="['Home']">Home</a></li>
-          <li id="gA"><a [routerLink]="['About']">About</a></li>
-          <li id="gS"><a [routerLink]="['Services']">Services</a></li>
-          <li id="gD"><a [routerLink]="['Dentists']">Dentists</a></li>
-          <li id="gG"><a [routerLink]="['Gallery']">Gallery</a></li>
-          <li id="gF"><a [routerLink]="['FAQ']">FAQ</a></li>
-          <li id="gC"><a [routerLink]="['Contact']">Contact</a></li>
-        
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="active"><a [routerLink]="['Home']" (click)="click()">Home</a></li>
+          <li><a [routerLink]="['About']" (click)="click()">About</a></li>
+          <li><a [routerLink]="['Services']" (click)="click()">Services</a></li>
+          <li><a [routerLink]="['Dentists']" (click)="click()">Dentists</a></li>
+          <li><a [routerLink]="['Gallery']" (click)="click()">Gallery</a></li>
+          <li><a [routerLink]="['FAQ']" (click)="click()">FAQ</a></li>
+          <li><a [routerLink]="['Contact']" (click)="click()">Contact</a></li>
         </ul>
-      </nav><!-- .nav-menu -->
-      <a *ngIf="isLoggedIn" [routerLink]="['Appointment']" class="appointment-btn" style="color:white">Make an Appointment</a>
-      <a *ngIf="isLoggedIn"  (click)="logout()" class="appointment-btn">Cerrar sesión</a>
-      <a *ngIf="!isLoggedIn"  [routerLink]="['login']" class="appointment-btn">Iniciar sesión</a>
-      
+        <!-- Links -->
 
+      </div>
+      <!-- Collapsible content -->
     </div>
-  </header><!-- End Header -->
+
+    <h1 class="logo mr-auto"><a [routerLink]="['Home']">Medilab</a></h1>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+    <nav class="nav-menu d-none d-lg-block">
+      <ul id="listaBotones">
+        <li id="gH" class="active"><a [routerLink]="['Home']">Home</a></li>
+        <li id="gA"><a [routerLink]="['About']">About</a></li>
+        <li id="gS"><a [routerLink]="['Services']">Services</a></li>
+        <li id="gD"><a [routerLink]="['Dentists']">Dentists</a></li>
+        <li id="gG"><a [routerLink]="['Gallery']">Gallery</a></li>
+        <li id="gF"><a [routerLink]="['FAQ']">FAQ</a></li>
+        <li id="gC"><a [routerLink]="['Contact']">Contact</a></li>
+
+      </ul>
+    </nav><!-- .nav-menu -->
+    <a *ngIf="isLoggedIn" [routerLink]="['Appointment']" class="appointment-btn" style="color:white">Make an
+      Appointment</a>
+    <a *ngIf="isLoggedIn" (click)="logout()" class="appointment-btn">Cerrar sesión</a>
+    <a *ngIf="!isLoggedIn" [routerLink]="['login']" class="appointment-btn">Iniciar sesión</a>
+
+
+
+
+  </div>
+</header><!-- End Header -->
