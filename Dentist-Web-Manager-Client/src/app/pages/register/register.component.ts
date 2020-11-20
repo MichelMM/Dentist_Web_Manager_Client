@@ -66,7 +66,7 @@ comprobarRFC() {
         Last_name: values.Last_name,
         Phone_number: values.Phone_number,
         Email: values.Email,
-        Birth_date: {date: values.Birth_date},//********Modificar esto por temas de fomrato de la fecha **********************/
+        Birth_date: values.Birth_date,//********Modificar esto por temas de fomrato de la fecha **********************/
         RFC: values.RFC,
         Password: values.Password
       }).then((res)=>{

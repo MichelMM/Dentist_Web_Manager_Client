@@ -15,7 +15,7 @@ export class SignupService {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type':  'application/json'})
     }
-    return this.http.post(`${environment.API_URL}/patient`,body,httpOptions).toPromise()
+    return this.http.post(`${environment.API_URL}/signup`,body,httpOptions).toPromise();
   }
 
 }
