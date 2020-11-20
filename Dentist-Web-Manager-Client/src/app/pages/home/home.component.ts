@@ -10,6 +10,8 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    document.querySelectorAll("#listaBotones li").forEach(e=>e.removeAttribute("class"))
+    document.querySelector("#gH").setAttribute("class","active")
   }
 
 }

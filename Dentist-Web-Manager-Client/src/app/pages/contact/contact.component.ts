@@ -10,6 +10,8 @@ export class ContactComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    document.querySelectorAll("#listaBotones li").forEach(e=>e.removeAttribute("class"))
+    document.querySelector("#gC").setAttribute("class","active")
   }
 
 }

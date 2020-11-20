@@ -10,6 +10,8 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    document.querySelectorAll("#listaBotones li").forEach(e=>e.removeAttribute("class"))
+    document.querySelector("#gA").setAttribute("class","active")
   }
 
 }

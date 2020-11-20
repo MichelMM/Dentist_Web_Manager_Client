@@ -11,6 +11,8 @@ export class ServicesComponent implements OnInit {
   constructor(private apiServ:ApiService) { }
 
   ngOnInit(): void {
+    document.querySelectorAll("#listaBotones li").forEach(e=>e.removeAttribute("class"))
+    document.querySelector("#gS").setAttribute("class","active")
     this.apiServ.getDentist(JSON.stringify({Dentist_ID:1})).then(data=>{
       console.log(data)
     }).catch((e)=>{
