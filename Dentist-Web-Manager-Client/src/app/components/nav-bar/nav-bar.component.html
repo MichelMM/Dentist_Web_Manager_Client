@@ -17,7 +17,9 @@
         
         </ul>
       </nav><!-- .nav-menu -->
-      <a [routerLink]="['Appointment']" class="appointment-btn" style="color:white">Make an Appointment</a>
+      <a *ngIf="isLoggedIn" [routerLink]="['Appointment']" class="appointment-btn" style="color:white">Make an Appointment</a>
+      <a *ngIf="isLoggedIn"  (click)="logout()" class="appointment-btn">Cerrar sesión</a>
+      <a *ngIf="!isLoggedIn"  [routerLink]="['login']" class="appointment-btn">Iniciar sesión</a>
       
 
     </div>

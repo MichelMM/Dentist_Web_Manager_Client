@@ -4,6 +4,8 @@ import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from "@angular/router"
+ 
+import { SocialAuthService, GoogleLoginProvider } from "angularx-social-login";
 
 @Component({
   selector: 'app-login',
@@ -20,12 +22,18 @@ export class LoginComponent implements OnInit {
     private formBuilder:FormBuilder, 
     private loginService:LoginService, 
     private authService:AuthService, 
-    private router:Router) { }
+    private router:Router,
+    private socialAuthService:SocialAuthService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", Validators.required]
+    });
+
+    this.socialAuthService.authState.subscribe((user) => {
+      console.log("Usuaior de google:")
+      console.log(user)
     });
   }
 
@@ -40,5 +48,9 @@ export class LoginComponent implements OnInit {
       console.log("Error:")
       console.log(err)
     })
+  }
+
+  googleLogin(){
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 }
