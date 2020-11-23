@@ -40,5 +40,12 @@ export class ApiService {
     return this.http.get(`${environment.API_URL}/patient?filter=`+filter).toPromise()
   }
 
+  getPatientbyId(filter:string):any{
+    return this.http.get(`${environment.API_URL}/patientId?filter=`+filter).toPromise()
+  }
+
+  getToken(filter:string):any{
+    return this.http.get(`${environment.API_URL}/token?filter=`+filter).toPromise()
+  }
   
 }

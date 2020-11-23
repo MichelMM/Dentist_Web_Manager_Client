@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../services/api.service';
 
+
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
@@ -18,7 +19,7 @@ export class AppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDentists();
-    this.getPatient(JSON.stringify({}));
+    this.getPatient(localStorage.getItem('token'));
   }
 
   getDentists(){
@@ -30,13 +31,17 @@ export class AppointmentComponent implements OnInit {
     })
   }
 
+
   getPatient(e){
-    this.apiServ.getPatient(e).then(data=>{
-      console.log(data)
-      this.patient=data[0];
+    this.apiServ.getToken(e).then(data=>{
+      this.apiServ.getPatientbyId(JSON.stringify(data[0].userId)).then(data=>{
+        this.patient=data[0];
+      }).catch((e)=>{
+        console.log(e)
+      })
     }).catch((e)=>{
       console.log(e)
-    })
+    });
   }
   
   sendAppointment(){

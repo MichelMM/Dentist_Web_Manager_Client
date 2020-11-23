@@ -23,12 +23,14 @@ export class NavBarComponent implements OnInit {
   faGoogle = faGoogle;
 
   form: FormGroup
+  
   constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private loginService: LoginService, private socialAuthService: SocialAuthService) {
     this.authService.loginStatus.subscribe(s => {
       console.log("Login status", s)
       this.isLoggedIn = s
     })
   }
+
 
 
 
