@@ -14,7 +14,6 @@ import {​​ HttpClientModule }​​ from '@angular/common/http';
 import { DentistsComponent } from './pages/dentists/dentists.component';
 import { AppointmentComponent } from './pages/appointment/appointment.component';
 import { MyAppointmentsComponent } from './pages/user/my-appointments/my-appointments.component';
-import { LoginComponent } from './pages/login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './pages/register/register.component';
@@ -34,7 +33,6 @@ import { environment } from 'src/environments/environment';
     DentistsComponent,
     AppointmentComponent,
     MyAppointmentsComponent,
-    LoginComponent,
     RegisterComponent
   ],
   imports: [
