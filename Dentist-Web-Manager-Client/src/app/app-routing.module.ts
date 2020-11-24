@@ -14,6 +14,7 @@ import { Page404Component } from './pages/page404/page404.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from "./guards/auth.guard"
 import { UnauthGuard } from "./guards/unauth.guard"
+import { ProfileComponent } from './pages/user/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'Dentists', component: DentistsComponent },
   { path: 'Appointment', component: AppointmentComponent, canActivate:[AuthGuard]},
   { path: 'myAppointment', component: MyAppointmentsComponent, canActivate:[AuthGuard]},
+  { path: 'profile', component: ProfileComponent},
   { path: 'register', component: RegisterComponent, canActivate:[UnauthGuard]},
   { path: '**', component: Page404Component}
 ]

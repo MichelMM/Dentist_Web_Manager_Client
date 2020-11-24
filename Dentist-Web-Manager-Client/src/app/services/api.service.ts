@@ -47,5 +47,13 @@ export class ApiService {
   getToken(filter:string):any{
     return this.http.get(`${environment.API_URL}/token?filter=`+filter).toPromise()
   }
+
+  patchPatient(body):any{
+    body = JSON.stringify(body)
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type':  'application/json'})
+    }
+    return this.http.patch(`${environment.API_URL}/patient`,body,httpOptions).toPromise()
+  }
   
 }
