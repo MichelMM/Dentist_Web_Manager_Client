@@ -4,13 +4,21 @@
 <br>
 <br>
 <br>
-<div *ngFor="let item of appointDentist">
-    <ul>
-        <li>Dentista: {{item.Dentist}} {{item.DentistLN}}</li>
-        <li>Paciente: {{item.Patient}} {{item.PatientLN}}</li>
-        <li>Causa: {{item.Cause}}</li>
-        <li>Fecha: {{item.Date}}</li>
-        <li>Notas: {{item.Description}}</li>
-    </ul>
-    <br>
-</div>
+<section  class="doctors">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let item of appointDentist" class="col-lg-6">
+        <div class="member d-flex align-items-start">
+          <div class="member-info">
+            <h4>Dentista: {{item.Dentist}} {{item.DentistLN}}</h4>
+            <span>Paciente</span>
+            <p>{{item.Patient}} {{item.PatientLN}}</p>
+            <p>Causa: {{item.Cause}}</p>
+            <p>Fecha: {{item.Date}}</p>
+            <p>Notas: {{item.Description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
