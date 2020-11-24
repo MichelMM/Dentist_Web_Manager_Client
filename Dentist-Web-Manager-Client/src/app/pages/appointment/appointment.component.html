@@ -41,7 +41,7 @@
         <div class="col-md-4 form-group">
           <select [(ngModel)]="doctor" name="doctor" id="doctor" class="form-control">
             <option value="">Select Doctor</option>
-            <option *ngFor="let item of dentists" value="{{item.Dentist_ID}}">{{item.Name}} {{item.Last_name}}</option>
+            <option *ngFor="let item of dentists" value="{{item._id}}">{{item.Name}} {{item.Last_name}}</option>
           </select>
           <div class="validate"></div>
         </div>

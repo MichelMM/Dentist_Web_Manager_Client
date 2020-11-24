@@ -19,12 +19,15 @@ export class ApiService {
     return this.http.get(`${environment.API_URL}/dentist?filter=`+filter).toPromise()
   }
 
+  getAppointmentFilter(filter:string):any{
+    return this.http.get(`${environment.API_URL}/appointment?filter=`+filter).toPromise()
+  }
+
   getAppointments():any{
     return this.http.get(`${environment.API_URL}/appointments`).toPromise()
   }
 
   sendAppointment(body):any{  
-    // console.log(body)
     body = JSON.stringify({data:body})
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type':  'application/json'})
