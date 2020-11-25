@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SocketIoService } from 'src/app/services/socket-io.service';
 import { ApiService } from './../../services/api.service';
 
 
@@ -9,7 +10,7 @@ import { ApiService } from './../../services/api.service';
 })
 export class AppointmentComponent implements OnInit {
 
-  constructor(private apiServ:ApiService) { }
+  constructor(private apiServ:ApiService, private socket:SocketIoService) { }
   dentists: any[] = [];
   patient: any = {};
 
@@ -45,9 +46,14 @@ export class AppointmentComponent implements OnInit {
   }
   
   sendAppointment(){
+    
     console.log({Dentist_ID:this.doctor,Patient_ID:this.patient._id,Date:this.date,Cause:this.cause});
     this.apiServ.sendAppointment({Dentist_ID:this.doctor,Patient_ID:this.patient._id,Date:this.date,Cause:this.cause}).then(data=>{
       console.log(data);
+      console.log('Emitiendo appointment con socket...');
+      this.socket.emit('appointmentDone', {
+        url: 'localhost://4200/myAppointment'
+      });
     }).catch((e)=>{
       console.log(e)
     })
