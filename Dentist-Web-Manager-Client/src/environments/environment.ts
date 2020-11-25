@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   API_URL: "http://localhost:3000/api",
+  SOCKET_URL: "http://localhost:3000",
   clientId: "879994592250-47fqcmat6s2k7dh0n2om8hvgr6q1960a.apps.googleusercontent.com"
 };
 
