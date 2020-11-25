@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { SocketIoService } from './services/socket-io.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Dentist-Web-Manager-Client';
+
+  constructor(private socket: SocketIoService, private authService: AuthService) {
+    if (this.authService.isLoggedIn()) {
+      this.socket.connect();
+    }
+  }
 }
