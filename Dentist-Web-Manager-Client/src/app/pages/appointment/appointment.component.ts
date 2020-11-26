@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketIoService } from 'src/app/services/socket-io.service';
 import { ApiService } from './../../services/api.service';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms"
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -11,7 +12,12 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 })
 export class AppointmentComponent implements OnInit {
 
-  constructor(private apiServ: ApiService, private socket: SocketIoService, private formBuilder: FormBuilder) { }
+  constructor(
+    private apiServ: ApiService,
+    private socket: SocketIoService,
+    private formBuilder: FormBuilder,
+    private toastr:ToastrService
+  ) { }
   dentists: any[] = [];
   patient: any = {};
   hour: string[] = [];
@@ -70,7 +76,7 @@ export class AppointmentComponent implements OnInit {
 
   }
 
-  funcionParaVerSiFunciona(){
+  funcionParaVerSiFunciona() {
     let values = this.form.getRawValue();
     console.log(this.form)
   }
@@ -105,7 +111,12 @@ export class AppointmentComponent implements OnInit {
       console.log(data);
       console.log('Emitiendo appointment con socket...');
       this.socket.emit('appointmentDone', {
-        url: 'localhost://4200/myAppointment'
+        url: 'localhost://4200/user/myAppointment',
+        patientName: this.patient.Name,
+        patientLastName: this.patient.Last_name
+      });
+      this.toastr.success(`Appointment generated! You can ckeck your appointments <a href="localhost://4200/user/myAppointments" target="_blank">here</a>` ,'Appointment done!', {
+      enableHtml: true
       });
     }).catch((e) => {
       console.log(e)

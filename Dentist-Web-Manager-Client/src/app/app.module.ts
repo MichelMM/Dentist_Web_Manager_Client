@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +18,10 @@ import { MyAppointmentsComponent } from './pages/user/my-appointments/my-appoint
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './pages/register/register.component';
+
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 'angularx-social-login';
+import { ToastrModule } from 'ngx-toastr';
+
 import { environment } from 'src/environments/environment';
 import { ProfileComponent } from './pages/user/profile/profile.component';
 import { DentistRegisterComponent } from './pages/dentist-register/dentist-register.component';
@@ -43,12 +47,14 @@ import { DentistLoginComponent } from './pages/dentist-login/dentist-login.compo
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {
