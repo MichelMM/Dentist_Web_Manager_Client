@@ -70,9 +70,6 @@ export class MyAppointmentsComponent implements OnInit {
   }
   
 
-  getPatient(e) {
-    
-  }
 
 
   getAppointDentist(): void {

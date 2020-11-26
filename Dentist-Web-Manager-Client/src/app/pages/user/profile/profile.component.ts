@@ -26,7 +26,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.getPatient(localStorage.getItem('token'));
 
     this.forma = this.formBuilder.group({
