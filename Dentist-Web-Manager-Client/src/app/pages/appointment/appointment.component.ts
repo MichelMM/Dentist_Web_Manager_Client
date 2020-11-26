@@ -58,7 +58,6 @@ export class AppointmentComponent implements OnInit {
           this.appointments = data;
           temp = temp[weekday[appDate.getDay()]]
           for (var i = 0; i < this.appointments.length; i++) {
-            console.log(i)
             temp = temp.filter(element => element != this.appointments[i].Hour)
           }
           this.hour = temp
@@ -70,14 +69,8 @@ export class AppointmentComponent implements OnInit {
 
   }
 
-  funcionParaVerSiFunciona(){
-    let values = this.form.getRawValue();
-    console.log(this.form)
-  }
-
   getDentists() {
     this.apiServ.getDentists().then(data => {
-      console.log(data)
       this.dentists = data
     }).catch((e) => {
       console.log(e);
@@ -99,10 +92,19 @@ export class AppointmentComponent implements OnInit {
 
   sendAppointment() {
     const values = this.form.getRawValue();
-    console.log(values)
-
-    this.apiServ.sendAppointment({ Dentist_ID: values.Dentist_ID, Patient_ID: this.patient._id, Date: values.Date, Cause: values.Cause, Hour: values.Hour }).then(data => {
-      console.log(data);
+    let obj = {
+      Dentist_ID: values.Dentist_ID,
+      Patient_ID: this.patient._id,
+      Cause: values.Cause,
+      Date: values.Date,
+      Hour: values.Hour,
+      Paid: false,
+      images: [],
+      Description:"",
+      Payment_type:"",
+      Amount:0
+    }
+    this.apiServ.sendAppointment(obj).then(data => {
       console.log('Emitiendo appointment con socket...');
       this.socket.emit('appointmentDone', {
         url: 'localhost://4200/myAppointment'

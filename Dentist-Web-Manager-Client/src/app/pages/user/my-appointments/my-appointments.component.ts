@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../../services/api.service';
 
 @Component({
@@ -6,6 +6,7 @@ import { ApiService } from './../../../services/api.service';
   templateUrl: './my-appointments.component.html',
   styleUrls: ['./my-appointments.component.scss']
 })
+
 export class MyAppointmentsComponent implements OnInit {
 
   constructor(private apiServ: ApiService) { }
@@ -18,31 +19,8 @@ export class MyAppointmentsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.requestAppointments1(localStorage.getItem('token'))
+    this.requestAppointments(localStorage.getItem('token'))
 
-  }
-
-  requestAppointments(): void { //PROFE AIUDAAAAAAAAAA
-    this.apiServ.getAppointments().then(data => {
-      this.appointments = data
-      console.log("Just appointments")
-      console.log(this.appointments)
-      this.apiServ.getDentists().then(data => {
-        this.dentists = data
-        // console.log(data)
-        this.apiServ.getPatients().then(data => {
-          this.patients = data
-          // console.log(data)
-          this.getAppointDentist()
-        }).catch(e => {
-          console.error(e)
-        })
-      }).catch(e => {
-        console.error(e)
-      })
-    }).catch(e => {
-      console.error(e)
-    })
   }
 
   changeMonth() {
@@ -65,7 +43,7 @@ export class MyAppointmentsComponent implements OnInit {
     });
   }
 
-  requestAppointments1(e): void {
+  requestAppointments(e): void {
     this.apiServ.getToken(e).then(data => {
       this.apiServ.getPatientbyId(JSON.stringify(data[0].userId)).then(data => {
         this.patients = data[0];
@@ -97,6 +75,7 @@ export class MyAppointmentsComponent implements OnInit {
       let obj = {}
       obj["Cause"] = appointment.Cause;
       obj["Date"] = appointment.Date;
+      obj["Hour"] = appointment.Hour;
       obj["Description"] = appointment.Description;
 
       obj["Dentist"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Name
