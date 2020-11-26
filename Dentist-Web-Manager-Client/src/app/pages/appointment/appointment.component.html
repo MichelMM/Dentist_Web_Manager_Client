@@ -8,55 +8,57 @@
   <div class="container">
 
     <div class="section-title">
-      <h2>Make an Appointment</h2>
-      <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-        consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in
-        iste officiis commodi quidem hic quas.</p>
+      <h2>Hacer una cita</h2>
+      <p>Promovemos el uso de nuestros planes a través de campañas digitales y presenciales</p>
+      <p>Nuestros especialistas recomiendan realizarte una limpieza dental cada 6 meses para mantener el estado de salud general de tu boca.</p>
     </div>
 
-    <form (submit)="sendAppointment()" role="form" class="php-email-form">
+    <form (submit)="sendAppointment()" [formGroup]="form" role="form" class="php-email-form">
       <div class="form-row">
-        <div class="col-md-4 form-group">
+        <div class="col-md-4 form-group"> <!-- form-group// -->
           <input type="text" name="name" class="form-control" id="name"
             placeholder="{{patient.Name}} {{patient.Last_name}}" data-rule="minlen:4" disabled>
           <div class="validate"></div>
-        </div>
-        <div class="col-md-4 form-group">
-          <input type="email" class="form-control" name="email" id="email" placeholder="{{patient.Email}}"
+        </div><!-- form-group end.// -->
+        <div class="col-md-4 form-group"><!-- form-group// -->
+          <input type="email" class="form-control" name="email"  placeholder="{{patient.Email}}"
             data-rule="email" disabled>
           <div class="validate"></div>
-        </div>
-        <div class="col-md-4 form-group">
+        </div><!-- form-group end.// -->
+        <div class="col-md-4 form-group"><!-- form-group// -->
           <input type="tel" class="form-control" name="phone" id="phone" placeholder="{{patient.Phone_number}}"
             data-rule="minlen:4" disabled>
           <div class="validate"></div>
-        </div>
+        </div><!-- form-group end.// -->
       </div>
       <div class="form-row">
-        <div class="col-md-4 form-group">
-          <input [(ngModel)]="date" type="date" name="date" class="form-control" id="date"
+        <div class="col-md-4 form-group"><!-- form-group// -->
+          <input  (change)="changeHour()" formControlName="Date" type="date" name="somedate" class="form-control" id="date"
             placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
           <div class="validate"></div>
-        </div>
-        <div class="col-md-4 form-group">
-          <select [(ngModel)]="doctor" name="doctor" id="doctor" class="form-control">
-            <option value="">Select Doctor</option>
+        </div><!-- form-group end.// -->
+        <div class="col-md-4 form-group"><!-- form-group// -->
+          <select (change)="changeHour()" formControlName="Dentist_ID" name="doctor" id="doctor" class="form-control">
+            <option [ngValue]="null" disabled>Selecciona un dentista</option>
             <option *ngFor="let item of dentists" value="{{item._id}}">{{item.Name}} {{item.Last_name}}</option>
           </select>
           <div class="validate"></div>
-        </div>
+        </div><!-- form-group end.// -->
+        <div class="col-md-4 form-group"><!-- form-group// -->
+          <select  (change)="funcionParaVerSiFunciona()" formControlName="Hour" id="hour" class="form-control">
+            <option [ngValue]="null" disabled>Selecciona un horario</option>
+            <option *ngFor="let item of hour" value="{{item}}">{{item}}</option>
+          </select>
+          <div class="validate"></div>
+        </div><!-- form-group end.// -->
       </div>
 
-      <div class="form-group">
-        <textarea [(ngModel)]="cause" class="form-control" name="message" rows="5" placeholder="Cause"></textarea>
+      <div class="form-group"><!-- form-group// -->
+        <textarea formControlName="Cause" class="form-control" name="message" rows="5"
+          placeholder="Causa"></textarea>
         <div class="validate"></div>
-      </div>
-      <div class="mb-3">
-        <div class="loading">Loading</div>
-        <div class="error-message"></div>
-        <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
-      </div>
-      <div class="text-center"><button type="submit">Make an Appointment</button></div>
+      </div><!-- form-group end.// -->
+      <div class="text-center" ><button type="submit" [disabled]="form.invalid">Hacer cita</button></div>
     </form>
 
   </div>
