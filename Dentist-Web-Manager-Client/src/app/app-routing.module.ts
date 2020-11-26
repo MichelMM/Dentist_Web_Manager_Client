@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'Dentists', component: DentistsComponent },
   { path: 'Appointment', component: AppointmentComponent, canActivate:[AuthGuard]},
   { path: 'user/myAppointment', component: MyAppointmentsComponent, canActivate:[AuthGuard]},
-  { path: 'user/profile', component: ProfileComponent},
+  { path: 'user/profile', component: ProfileComponent, canActivate:[AuthGuard]},
   { path: 'register', component: RegisterComponent, canActivate:[UnauthGuard]},
   { path: 'dentistRegister', component: DentistRegisterComponent, canActivate:[UnauthGuard]},
   { path: 'dentistLogin', component: DentistLoginComponent, canActivate:[UnauthGuard]},
