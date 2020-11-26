@@ -26,6 +26,7 @@ import { environment } from 'src/environments/environment';
 import { ProfileComponent } from './pages/user/profile/profile.component';
 import { DentistRegisterComponent } from './pages/dentist-register/dentist-register.component';
 import { DentistLoginComponent } from './pages/dentist-login/dentist-login.component';
+import { DentistAppointmentComponent } from './pages/user/dentist-appointment/dentist-appointment.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { DentistLoginComponent } from './pages/dentist-login/dentist-login.compo
     RegisterComponent,
     DentistRegisterComponent,
     ProfileComponent,
-    DentistLoginComponent
+    DentistLoginComponent,
+    DentistAppointmentComponent
   ],
   imports: [
     BrowserModule,

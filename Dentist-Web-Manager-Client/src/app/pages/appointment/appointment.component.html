@@ -45,7 +45,7 @@
           <div class="validate"></div>
         </div><!-- form-group end.// -->
         <div class="col-md-4 form-group"><!-- form-group// -->
-          <select  (change)="funcionParaVerSiFunciona()" formControlName="Hour" id="hour" class="form-control">
+          <select formControlName="Hour" id="hour" class="form-control">
             <option [ngValue]="null" disabled>Selecciona un horario</option>
             <option *ngFor="let item of hour" value="{{item}}">{{item}}</option>
           </select>
@@ -55,7 +55,7 @@
 
       <div class="form-group"><!-- form-group// -->
         <textarea formControlName="Cause" class="form-control" name="message" rows="5"
-          placeholder="Causa"></textarea>
+          placeholder="Inserte aquí el motivo, trate de ser lo más descriptivo posible"></textarea>
         <div class="validate"></div>
       </div><!-- form-group end.// -->
       <div class="text-center" ><button type="submit" [disabled]="form.invalid">Hacer cita</button></div>

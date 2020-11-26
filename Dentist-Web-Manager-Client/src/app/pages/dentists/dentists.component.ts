@@ -13,7 +13,7 @@ export class DentistsComponent implements OnInit {
   dentists:any[]=[]
 
   ngOnInit(): void {
-    document.querySelectorAll("#listaBotones li").forEach(e=>e.removeAttribute("class"))
+    document.querySelectorAll("#listaBotones li:not(#dropdown)").forEach(e=>e.removeAttribute("class"))
     document.querySelector("#gD").setAttribute("class","active")
     this.apiServ.getDentists().then(data=>{
       console.log(data)
