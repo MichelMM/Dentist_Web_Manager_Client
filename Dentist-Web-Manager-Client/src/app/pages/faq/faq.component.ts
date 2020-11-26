@@ -10,7 +10,7 @@ export class FaqComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    document.querySelectorAll("#listaBotones li").forEach(e=>e.removeAttribute("class"))
+    document.querySelectorAll("#listaBotones li:not(#dropdown)").forEach(e=>e.removeAttribute("class"))
     document.querySelector("#gF").setAttribute("class","active")
   }
 

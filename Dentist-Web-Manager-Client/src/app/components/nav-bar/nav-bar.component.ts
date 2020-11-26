@@ -65,6 +65,7 @@ export class NavBarComponent implements OnInit {
   click() {
     // console.log("Cerrar navbar")
     document.querySelector("#navbarSupportedContent1").setAttribute("class", "navbar-collapse collapse")
+    document.getElementById("dropdown").setAttribute("class","drop-down")
   }
 
   loginClick(){

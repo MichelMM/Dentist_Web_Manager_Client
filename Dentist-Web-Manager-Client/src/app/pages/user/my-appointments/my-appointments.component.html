@@ -4,6 +4,17 @@
 <br>
 <br>
 <br>
+<div class ="container">
+  <h1>¡Buen día {{patients.Name}}!</h1>
+  <div class="col-md-4 form-group"><!-- form-group// -->
+    <input  [(ngModel)]= "month" (change)="changeMonth()" type="month" name="somedate" class="form-control" id="date"
+      placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars"> Selecciona el mes de tu citas
+    <div class="validate"></div>
+  </div><!-- form-group end.// -->
+</div>
+
+
+
 <section  class="doctors">
   <div class="container">
     <div class="row">
