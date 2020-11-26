@@ -27,8 +27,8 @@ const routes: Routes = [
   { path: 'Services', component: ServicesComponent },
   { path: 'Dentists', component: DentistsComponent },
   { path: 'Appointment', component: AppointmentComponent, canActivate:[AuthGuard]},
-  { path: 'myAppointment', component: MyAppointmentsComponent, canActivate:[AuthGuard]},
-  { path: 'profile', component: ProfileComponent},
+  { path: 'user/myAppointment', component: MyAppointmentsComponent, canActivate:[AuthGuard]},
+  { path: 'user/profile', component: ProfileComponent},
   { path: 'register', component: RegisterComponent, canActivate:[UnauthGuard]},
   { path: 'dentistRegister', component: DentistRegisterComponent, canActivate:[UnauthGuard]},
   { path: '**', component: Page404Component}
