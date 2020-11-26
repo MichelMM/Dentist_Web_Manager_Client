@@ -17,6 +17,14 @@ export class LoginService {
     }
     return this.http.post(`${environment.API_URL}/auth`,body,httpOptions).toPromise()
   }
+  
+  dentistLogin(body:any):Promise<any>{
+    body = JSON.stringify({data:body})
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type':  'application/json'})
+    }
+    return this.http.post(`${environment.API_URL}/dentistAuth`,body,httpOptions).toPromise()
+  }
 
 
   googleLogin(body:any):Promise<any>{
