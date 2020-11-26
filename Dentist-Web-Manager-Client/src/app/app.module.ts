@@ -21,6 +21,7 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 
 import { environment } from 'src/environments/environment';
 import { ProfileComponent } from './pages/user/profile/profile.component';
 import { DentistRegisterComponent } from './pages/dentist-register/dentist-register.component';
+import { DentistLoginComponent } from './pages/dentist-login/dentist-login.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DentistRegisterComponent } from './pages/dentist-register/dentist-regis
     MyAppointmentsComponent,
     RegisterComponent,
     DentistRegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    DentistLoginComponent
   ],
   imports: [
     BrowserModule,
