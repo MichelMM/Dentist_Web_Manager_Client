@@ -12,6 +12,7 @@ import { AppointmentComponent } from './pages/appointment/appointment.component'
 import { MyAppointmentsComponent } from './pages/user/my-appointments/my-appointments.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { DentistRegisterComponent } from './pages/dentist-register/dentist-register.component';
 import { AuthGuard } from "./guards/auth.guard"
 import { UnauthGuard } from "./guards/unauth.guard"
 import { ProfileComponent } from './pages/user/profile/profile.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'myAppointment', component: MyAppointmentsComponent, canActivate:[AuthGuard]},
   { path: 'profile', component: ProfileComponent},
   { path: 'register', component: RegisterComponent, canActivate:[UnauthGuard]},
+  { path: 'dentistRegister', component: DentistRegisterComponent, canActivate:[UnauthGuard]},
   { path: '**', component: Page404Component}
 ]
 

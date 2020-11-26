@@ -20,6 +20,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 'angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { ProfileComponent } from './pages/user/profile/profile.component';
+import { DentistRegisterComponent } from './pages/dentist-register/dentist-register.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ProfileComponent } from './pages/user/profile/profile.component';
     AppointmentComponent,
     MyAppointmentsComponent,
     RegisterComponent,
+    DentistRegisterComponent,
     ProfileComponent
   ],
   imports: [
