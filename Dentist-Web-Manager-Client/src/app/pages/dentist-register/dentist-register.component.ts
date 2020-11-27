@@ -31,6 +31,7 @@ export class DentistRegisterComponent implements OnInit {
   faUserCircle = faUserCircle;
 
   forma: FormGroup;
+  Dias:Array<string>=["Lu","Ma","Mi","Ju","Vi","Sa"]
   constructor(
     private formBuilder: FormBuilder,
     private signupService: SignupService,
@@ -54,7 +55,19 @@ export class DentistRegisterComponent implements OnInit {
       fileSource: ['', Validators.required],
       Specialty: ["", Validators.required],
       Social_media: ["", Validators.required],
-      Description: ["", Validators.required]
+      Description: ["", Validators.required],
+      LuD: ["", Validators.required],
+      LuH: ["", Validators.required],
+      MaD: ["", Validators.required],
+      MaH: ["", Validators.required],
+      MiD: ["", Validators.required],
+      MiH: ["", Validators.required],
+      JuD: ["", Validators.required],
+      JuH: ["", Validators.required],
+      ViD: ["", Validators.required],
+      ViH: ["", Validators.required],
+      SaD: ["", Validators.required],
+      SaH: ["", Validators.required],
     }, {
       validators: [this.compararPasswords.bind(this), this.comprobarRFC.bind(this)]
     });
@@ -92,6 +105,24 @@ export class DentistRegisterComponent implements OnInit {
   createUser() {
     const values = this.forma.getRawValue();
     if (this.forma.valid) {
+      //Hacer arreglo de horario
+      let Schedule= {}
+      let dias = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+      let diasKey = ["Lu","Ma","Mi","Ju","Vi","Sa"]
+      let citas=[]
+      dias.forEach((dia,index)=>{
+        citas = []
+        let hasta = values[`${diasKey[index]}H`]
+        let desde = values[`${diasKey[index]}D`]
+        let numCitas = ((hasta-desde)*2)
+        for (let i = 0; i < numCitas; i++) {
+          citas.push(`${Number(desde)+Math.floor(i/2)}:${i%2==0?"00":"30"}:00`)
+        }
+        Schedule[dia] = citas
+      })
+      // console.log(Schedule)
+
+
       //Subir imagen
       const formData = new FormData();
       formData.append('image', this.forma.get('fileSource').value);
@@ -109,7 +140,8 @@ export class DentistRegisterComponent implements OnInit {
           Specialty: values.Specialty,
           Social_media: values.Social_media,
           Description: values.Description,
-          Image: respuesta.location
+          Image: respuesta.location,
+          Schedule: Schedule
         }).then((res) => {
           if (res.err) {
             console.log("Correo duplicado")

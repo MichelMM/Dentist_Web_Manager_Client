@@ -86,15 +86,18 @@
         </div>
         <input formControlName="Social_media" name="" class="form-control" placeholder="@instagram" type="text">
       </div> <!-- form-group end.// -->
-      <div class="form-group input-group">
+      <!-- Schedule -->
+      <p>Horario <fa-icon [icon]="faClock" ></fa-icon></p>
+      <div *ngFor="let item of Dias" class="form-group input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text">
-            <fa-icon [icon]="faClock" ></fa-icon>
-          </span>
+          <span class="input-group-text">{{item}}</span>
         </div>
-        <input formControlName="" name="" class="form-control" placeholder="Desde (24hrs)" type="text">
-        <input formControlName="" name="" class="form-control" placeholder="Hasta (24hrs)" type="text">
+        <input formControlName="{{item}}D" name="" class="form-control" placeholder="Desde (24hrs)" type="text">
+        <input formControlName="{{item}}H" name="" class="form-control" placeholder="Hasta (24hrs)" type="text">
       </div> <!-- form-group end.// -->
+      
+      
+      <!-- Schedule end -->
       <div class="form-group input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
