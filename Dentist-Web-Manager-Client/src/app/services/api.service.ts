@@ -48,7 +48,7 @@ export class ApiService {
   }
 
   getDentistbyId(filter:string):any{
-    return this.http.get(`${environment.API_URL}/patientId?filter=`+filter).toPromise()
+    return this.http.get(`${environment.API_URL}/dentistId?filter=`+filter).toPromise()
   }
 
   getToken(filter:string):any{

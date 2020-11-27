@@ -1,1 +1,32 @@
-<p>dentist-appointment works!</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class ="container">
+  <h1>¡Buen día {{dentists.Name}}!</h1>
+  <div class="col-md-4 form-group"><!-- form-group// -->
+    <input  [(ngModel)]= "month" type="month" name="somedate" class="form-control" id="date"
+      placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars"> Selecciona el mes de tu citas
+    <div class="validate"></div>
+  </div><!-- form-group end.// -->
+</div>
+
+
+<section  class="doctors">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let item of appointments" class="col-lg-6">
+        <div class="member d-flex align-items-start hightlight" (click)="clickApppointment(item._id)">
+          <div class="member-info">
+            <h4><b>Día:</b>  {{item.Date}}</h4>
+            <p><b>Hora:</b> {{item.Hour}}</p>
+            <p><b>Motivo:</b> {{item.Cause}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

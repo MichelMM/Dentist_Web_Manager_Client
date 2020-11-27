@@ -28,6 +28,8 @@ import { DentistRegisterComponent } from './pages/dentist-register/dentist-regis
 import { DentistLoginComponent } from './pages/dentist-login/dentist-login.component';
 import { DentistAppointmentComponent } from './pages/user/dentist-appointment/dentist-appointment.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,

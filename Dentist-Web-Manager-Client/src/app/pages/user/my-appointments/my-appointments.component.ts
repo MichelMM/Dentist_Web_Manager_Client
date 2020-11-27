@@ -30,13 +30,15 @@ export class MyAppointmentsComponent implements OnInit {
       let obj = {}
       if (appointment.Date.substr(0, 7) == this.month) {
         obj["Cause"] = appointment.Cause;
-        obj["Date"] = appointment.Date;
-        obj["Description"] = appointment.Description;
+      obj["Date"] = appointment.Date;
+      obj["Hour"] = appointment.Hour;
+      obj["Description"] = appointment.Description;
+      obj["Amount"] = appointment.Amount;
 
-        obj["Dentist"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Name
-        obj["DentistLN"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Last_name
-        obj["Patient"] = this.patients.Name
-        obj["PatientLN"] = this.patients.Last_name
+      obj["Dentist"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Name
+      obj["DentistLN"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Last_name
+      obj["Patient"] = this.patients.Name
+      obj["PatientLN"] = this.patients.Last_name
         this.appointDentist.push(obj)
       }
       
@@ -51,6 +53,7 @@ export class MyAppointmentsComponent implements OnInit {
           this.appointments = data
           this.apiServ.getDentists().then(data => {
             this.dentists = data;
+            console.log(this.dentists)
             this.getAppointDentist()
           }).catch((e) => {
             console.log(e)
@@ -77,6 +80,7 @@ export class MyAppointmentsComponent implements OnInit {
       obj["Date"] = appointment.Date;
       obj["Hour"] = appointment.Hour;
       obj["Description"] = appointment.Description;
+      obj["Amount"] = appointment.Amount;
 
       obj["Dentist"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Name
       obj["DentistLN"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Last_name

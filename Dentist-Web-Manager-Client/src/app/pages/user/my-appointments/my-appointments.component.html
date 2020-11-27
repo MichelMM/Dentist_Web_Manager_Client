@@ -25,7 +25,8 @@
             <span><b>Paciente:</b> {{item.Patient}} {{item.PatientLN}}</span>
             <p><b>Causa:</b> {{item.Cause}}</p>
             <p> <b>Fecha:</b> {{item.Date}}-{{item.Hour}}</p>
-            <p> <b>Notas:</b>  {{item.Description}}</p>
+            <p *ngIf="item.Description != '' "> <b>Notas:</b>  {{item.Description}}</p>
+            <p *ngIf="item.Amount!=0"> <b>Costo:</b> {{item.Amount}}</p>
           </div>
         </div>
       </div>

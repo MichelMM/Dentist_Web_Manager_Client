@@ -51,10 +51,10 @@
       </ul>
     </nav><!-- .nav-menu -->
     <a *ngIf="isLoggedIn" [routerLink]="['Appointment']" class="appointment-btn" style="color:white">Hacer una cita</a>
-    <a *ngIf="isLoggedIn" (click)="logout()" class="appointment-btn">Cerrar sesión</a>
+    <a *ngIf="isLoggedIn" (click)="logout()" class="appointment-btn " >Cerrar sesión</a>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
-        <a *ngIf="!isLoggedIn" class="appointment-btn dropdown-toggle" id="to-hidden" data-toggle="dropdown"><b>Iniciar
+        <a *ngIf="!isLoggedIn" class="appointment-btn dropdown-toggle" id="to-hidden" data-toggle="dropdown" ><b>Iniciar
             Sesión</b> <span class="caret"></span></a>
         <ul id="login-dp" class="dropdown-menu">
           <li>

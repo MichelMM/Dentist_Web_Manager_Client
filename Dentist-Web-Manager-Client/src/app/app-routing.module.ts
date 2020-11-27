@@ -17,6 +17,7 @@ import { AuthGuard } from "./guards/auth.guard"
 import { UnauthGuard } from "./guards/unauth.guard"
 import { ProfileComponent } from './pages/user/profile/profile.component';
 import { DentistLoginComponent } from './pages/dentist-login/dentist-login.component';
+import { DentistAppointmentComponent } from './pages/user/dentist-appointment/dentist-appointment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'Appointment', component: AppointmentComponent, canActivate:[AuthGuard]},
   { path: 'user/myAppointment', component: MyAppointmentsComponent, canActivate:[AuthGuard]},
   { path: 'user/profile', component: ProfileComponent, canActivate:[AuthGuard]},
+  { path: 'dentist/myAppointment', component: DentistAppointmentComponent},
   { path: 'register', component: RegisterComponent, canActivate:[UnauthGuard]},
   { path: 'dentistRegister', component: DentistRegisterComponent, canActivate:[UnauthGuard]},
   { path: 'dentistLogin', component: DentistLoginComponent, canActivate:[UnauthGuard]},
