@@ -8,9 +8,14 @@ import { SocketIoService } from './socket-io.service';
 export class AuthService {
 
   loginStatus:BehaviorSubject<boolean> = new BehaviorSubject(false);
+  loginStatusGoogle:BehaviorSubject<boolean> = new BehaviorSubject(false);
+  isLoggedGoogle:any;
 
   constructor(private socialAuthService:SocialAuthService, private socket:SocketIoService) {
     this.loginStatus.next(this.isLoggedIn());
+    this.socialAuthService.authState.subscribe(valor=>{
+      this.isLoggedGoogle=valor
+    })
   }
 
   save(data) {
@@ -29,7 +34,7 @@ export class AuthService {
   
   clear() {
     localStorage.removeItem('token');
-    this.socialAuthService.signOut();
+    if(this.isLoggedGoogle)this.socialAuthService.signOut();
     this.loginStatus.next(false);
     this.socket.disconnect();
   }
