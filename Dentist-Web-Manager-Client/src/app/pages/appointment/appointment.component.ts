@@ -16,7 +16,7 @@ export class AppointmentComponent implements OnInit {
     private apiServ: ApiService,
     private socket: SocketIoService,
     private formBuilder: FormBuilder,
-    private toastr:ToastrService
+    private toastr: ToastrService
   ) { }
   dentists: any[] = [];
   patient: any = {};
@@ -106,19 +106,20 @@ export class AppointmentComponent implements OnInit {
       Hour: values.Hour,
       Paid: false,
       images: [],
-      Description:"",
-      Payment_type:"",
-      Amount:0
+      Description: "",
+      Payment_type: "",
+      Amount: 0
     }
     this.apiServ.sendAppointment(obj).then(data => {
+      console.log(data);
       console.log('Emitiendo appointment con socket...');
       this.socket.emit('appointmentDone', {
         url: 'localhost://4200/user/myAppointment',
         patientName: this.patient.Name,
         patientLastName: this.patient.Last_name
       });
-      this.toastr.success(`Appointment generated! You can ckeck your appointments <a href="localhost://4200/user/myAppointments" target="_blank">here</a>` ,'Appointment done!', {
-      enableHtml: true
+      this.toastr.success(`Appointment generated! You can ckeck your appointments <a href="/user/myAppointment" target="_blank"><u>here</u></a>`, 'Appointment done!', {
+        enableHtml: true
       });
     }).catch((e) => {
       console.log(e)
