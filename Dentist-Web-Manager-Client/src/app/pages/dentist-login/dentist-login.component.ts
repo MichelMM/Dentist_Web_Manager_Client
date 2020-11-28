@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from "@angular/router"
+import { SocketIoService } from 'src/app/services/socket-io.service';
 
 @Component({
   selector: 'app-dentist-login',
@@ -16,6 +17,7 @@ export class DentistLoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private authService: AuthService,
+    private socket: SocketIoService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -31,7 +33,10 @@ export class DentistLoginComponent implements OnInit {
       console.log("Inicio de sesión correcto, token:")
       console.log(token)
       this.authService.save(token);
-      this.router.navigate(["/Home"])
+      this.router.navigate(["/Home"]);
+      this.socket.on('NewAppointment', data =>{
+        console.log('Data:',data);
+      });
     }).catch((err) => {
       console.log("Error:")
       console.log(err)
