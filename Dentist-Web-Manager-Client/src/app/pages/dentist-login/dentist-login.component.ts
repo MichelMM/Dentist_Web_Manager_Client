@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from "@angular/router"
 import { SocketIoService } from 'src/app/services/socket-io.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dentist-login',
@@ -18,6 +19,7 @@ export class DentistLoginComponent implements OnInit {
     private loginService: LoginService,
     private authService: AuthService,
     private socket: SocketIoService,
+    private toastr:ToastrService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -35,7 +37,15 @@ export class DentistLoginComponent implements OnInit {
       this.authService.save(token);
       this.router.navigate(["/Home"]);
       this.socket.on('NewAppointment', data =>{
-        console.log('Data:',data);
+        // console.log('DentistID:',data.dentistId);
+        this.authService.getUserLogged().then(res => {
+          // console.log('user INFO:', res[0].userId);
+          if(res[0].userId === data.dentistId){
+            this.toastr.success(`Appointment requested for this patient: ${data.patientName} ${data.patientLastName}`);
+          }
+        }).catch(e => {
+          console.log(e);
+        });
       });
     }).catch((err) => {
       console.log("Error:")
