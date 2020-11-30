@@ -47,7 +47,8 @@ export class AppointmentComponent implements OnInit {
   changeHour() {
     let values = this.form.getRawValue();
     const todayDate = new Date()
-    let appDate = new Date(values.Date + "T00:00:00.000-06:00");
+    let appDate = new Date(values.Date);
+    appDate.setTime(appDate.getTime() + (appDate.getTimezoneOffset() *60000))
     var weekday = new Array(7);
     weekday[0] = "Sunday";
     weekday[1] = "Monday";

@@ -27,8 +27,9 @@ import { ProfileComponent } from './pages/user/profile/profile.component';
 import { DentistRegisterComponent } from './pages/dentist-register/dentist-register.component';
 import { DentistLoginComponent } from './pages/dentist-login/dentist-login.component';
 import { DentistAppointmentComponent } from './pages/user/dentist-appointment/dentist-appointment.component';
-
-
+import {MatDialogModule} from '@angular/material/dialog'
+import {MatButtonModule} from '@angular/material/button';
+import { DialogComponent } from './components/dialog/dialog.component'
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { DentistAppointmentComponent } from './pages/user/dentist-appointment/de
     DentistRegisterComponent,
     ProfileComponent,
     DentistLoginComponent,
-    DentistAppointmentComponent
+    DentistAppointmentComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -58,8 +60,11 @@ import { DentistAppointmentComponent } from './pages/user/dentist-appointment/de
     FormsModule,
     ReactiveFormsModule,
     SocialLoginModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatDialogModule,
+    MatButtonModule
   ],
+  entryComponents:[DialogComponent],
   providers: [
     {
       provide: 'SocialAuthServiceConfig',

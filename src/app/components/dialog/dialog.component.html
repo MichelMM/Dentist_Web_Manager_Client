@@ -1,0 +1,39 @@
+<div mat-dialog-content class="Modal">
+
+  <div class="">
+    <article >
+      <h1 class="card-title mt-3 text-center">Datos de la cita</h1>
+      <form [formGroup]="form" (submit)="modificarCita()">
+        <div class="">
+          <h3> <b>Paciente:</b> {{patient.Name}} {{patient.Last_name}}</h3>
+        </div> <!-- form-group// -->
+        <div class="form-group input-group">
+          <label for="input-file" style="border: 0; text-align: left;" class="btn btn-secondary form-control">Subir
+            imagen
+            <fa-icon *ngIf="form.value.Images!==''"></fa-icon></label>
+          <input id="input-file" style="display: none;" formControlName="Images" type="file" (change)="onFileChange($event)">
+        </div> <!-- form-group// -->
+        <div class=" form-group input-group">
+          <textarea formControlName="Description" name="" class="form-control"
+            placeholder="Descripción de la cita"></textarea>
+        </div> <!-- form-group// -->
+        <div class="form-group input-group">
+          <!-- form-group// -->
+          <select formControlName="Payment_type" name="Pago" class="form-control">
+            <option disabled>Método de pago</option>
+            <option value="Efectivo">Efectivo</option>
+            <option value="Cheque nominativo">Cheque nominativo</option>
+            <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+            <option value="Tarjeta de débito">Tarjeta de débito</option>
+          </select>
+        </div><!-- form-group end.// -->
+        <div class="form-group input-group">
+          <input formControlName="Amount" name="" class="form-control" placeholder="Costo" type="number" min="1">
+        </div> <!-- form-group// -->
+        <div class="form-group">
+          <button [disabled]="form.invalid" type="submit" class="btn btn-primary btn-block"> Editar Perfil</button>
+        </div> <!-- form-group// -->
+      </form>
+    </article>
+  </div> <!-- card.// -->
+</div>
