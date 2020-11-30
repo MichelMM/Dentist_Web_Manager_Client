@@ -1,0 +1,131 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="card bg-light">
+  <article class="card-body mx-auto" style="max-width: 400px;">
+    <h4 class="card-title mt-3 text-center">Formato de Registro</h4>
+    <form [formGroup]="forma" (submit)="createUser()">
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon [icon]="faUser"></fa-icon>
+          </span>
+        </div>
+        <input formControlName="Name" name="" class="form-control" placeholder="Nombre" type="text">
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon [icon]="faUserCircle"></fa-icon>
+          </span>
+        </div>
+        <input formControlName="Last_name" name="" class="form-control" placeholder="Apellidos" type="text">
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon [icon]="faImage"></fa-icon>
+          </span>
+        </div>
+        <label for="input-file" style="border: 0; text-align: left;" class="btn btn-secondary form-control">Subir imagen
+          <fa-icon [icon]="faCheck" *ngIf="forma.value.image!==''"></fa-icon></label>
+        <input id="input-file" style="display: none;" formControlName="image" type="file"
+          (change)="onFileChange($event)">
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon [icon]="faEnvelope"></fa-icon>
+          </span>
+        </div>
+        <input formControlName="Email" name="" class="form-control" placeholder="Correo Electrónico" type="email">
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon [icon]="faPhone"></fa-icon>
+          </span>
+        </div>
+        <input formControlName="Phone_number" name="" class="form-control" placeholder="Número Telefónico" type="text">
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon [icon]="faCalendar"></fa-icon>
+          </span>
+        </div>
+        <input formControlName="Birth_date" type="date" name="date" class="form-control" id="date"
+          placeholder="Fecha de Nacimineto" data-rule="minlen:4" data-msg="Ingrese al menos 4 caractéres">
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon [icon]="faWallet"></fa-icon>
+          </span>
+        </div>
+        <input formControlName="RFC" name="" class="form-control" placeholder="RFC" type="text">
+      </div> <!-- form-group end.// -->
+      <p *ngIf="forma.errors && forma.errors.errRFC">Formato de RFC incorrecto</p>
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon [icon]="faAddressCard"></fa-icon>
+          </span>
+        </div>
+        <input formControlName="Specialty" name="" class="form-control" placeholder="Especialidad" type="text">
+      </div> <!-- form-group end.// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon [icon]="faInstagram" ></fa-icon>
+          </span>
+        </div>
+        <input formControlName="Social_media" name="" class="form-control" placeholder="@instagram" type="text">
+      </div> <!-- form-group end.// -->
+      <!-- Schedule -->
+      <p>Horario <fa-icon [icon]="faClock" ></fa-icon></p>
+      <div *ngFor="let item of Dias" class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">{{item}}</span>
+        </div>
+        <input formControlName="{{item}}D" name="" class="form-control" placeholder="Desde (24hrs)" type="text">
+        <input formControlName="{{item}}H" name="" class="form-control" placeholder="Hasta (24hrs)" type="text">
+      </div> <!-- form-group end.// -->
+      
+      
+      <!-- Schedule end -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon [icon]="faInfo"></fa-icon>
+          </span>
+        </div>
+        <textarea formControlName="Description" name="" class="form-control" rows="3" placeholder="Breve Descripcción" type="text"></textarea>
+      </div> <!-- form-group end.// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon [icon]="faLock"></fa-icon>
+          </span>
+        </div>
+        <input formControlName="Password" class="form-control" placeholder="Contraseña" type="password">
+      </div> <!-- form-group// -->
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <fa-icon [icon]="faLock"></fa-icon>
+          </span>
+        </div>
+        <input formControlName="ConfirmPassword" class="form-control" placeholder="Repetir Contraseña" type="password">
+      </div> <!-- form-group// -->
+      <p *ngIf="forma.errors && forma.errors.mismatch">Las contraseñas no coinciden</p>
+      <div class="form-group">
+        <button [disabled]="forma.invalid" type="submit" class="btn btn-primary btn-block"> Crear cuenta </button>
+      </div> <!-- form-group// -->
+    </form>
+  </article>
+</div> <!-- card.// -->
