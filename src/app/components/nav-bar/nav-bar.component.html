@@ -1,0 +1,100 @@
+<header id="header" class="fixed-top">
+  <div class="container d-flex align-items-center">
+    <div id="hamb">
+      <!-- Collapse button -->
+      <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false"
+        aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fas fa-bars fa-1x"></i></span>
+        <fa-icon [icon]="faBars"></fa-icon>
+      </button>
+
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="active"><a [routerLink]="['Home']" (click)="click()">Inicio</a></li>
+          <li><a [routerLink]="['About']" (click)="click()">Sobre nosotros</a></li>
+          <li><a [routerLink]="['Services']" (click)="click()">Servicios</a></li>
+          <li><a [routerLink]="['Dentists']" (click)="click()">Dentista</a></li>
+          <li><a [routerLink]="['Gallery']" (click)="click()">Galeria</a></li>
+          <li><a [routerLink]="['FAQ']" (click)="click()">FAQ</a></li>
+          <li><a [routerLink]="['Contact']" (click)="click()">Contacto</a></li>
+          <li *ngIf="isLoggedIn"><a (click)="click()" [routerLink]="['user/profile']">Editar perfil</a></li>
+          <li *ngIf="isLoggedIn"><a (click)="click()" [routerLink]="['user/myAppointment']">Mis citas</a></li>
+        </ul>
+        <!-- Links -->
+
+      </div>
+      <!-- Collapsible content -->
+    </div>
+
+    <h1 class="logo mr-auto"><a [routerLink]="['Home']">Dentlab</a></h1>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+    <nav class="nav-menu d-none d-lg-block">
+      <ul id="listaBotones">
+        <li id="gH" class="active"><a [routerLink]="['Home']">Inicio</a></li>
+        <li id="gA"><a [routerLink]="['About']">Sobre nosotros</a></li>
+        <li id="gS"><a [routerLink]="['Services']">Servicios</a></li>
+        <li id="gD"><a [routerLink]="['Dentists']">Dentistas</a></li>
+        <li id="gG"><a [routerLink]="['Gallery']">Galeria</a></li>
+        <li id="gF"><a [routerLink]="['FAQ']">FAQ</a></li>
+        <li id="gC"><a [routerLink]="['Contact']">Contacto</a></li>
+        <li *ngIf="isLoggedIn" id="dropdown" class="drop-down"><a href="">Mi perfil</a>
+          <ul>
+            <li><a [routerLink]="['user/profile']">Editar perfil</a></li>
+            <li><a [routerLink]="['user/myAppointment']">Mis citas</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav><!-- .nav-menu -->
+    <a *ngIf="isLoggedIn" [routerLink]="['Appointment']" class="appointment-btn" style="color:white">Hacer una cita</a>
+    <a *ngIf="isLoggedIn" (click)="logout()" class="appointment-btn " >Cerrar sesión</a>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a *ngIf="!isLoggedIn" class="appointment-btn dropdown-toggle" id="to-hidden" data-toggle="dropdown" ><b>Iniciar
+            Sesión</b> <span class="caret"></span></a>
+        <ul id="login-dp" class="dropdown-menu">
+          <li>
+            <div class="row">
+              <div class="col-md-12">
+                Ingresar con
+                <div class="social-buttons">
+                  <!-- <a href="#" class="btn btn-fb">
+                    <fa-icon [icon]="faFacebook"></fa-icon> Facebook
+                  </a> -->
+                  <a (click)="googleLogin()" class="btn btn-tw">
+                    <fa-icon [icon]="faGoogle"></fa-icon> Google
+                  </a>
+                </div>
+                o
+                <form class="form" role="form" accept-charset="UTF-8" id="login-nav" [formGroup]="form"
+                  (submit)="login()">
+                  <div class="form-group">
+                    <label class="sr-only" for="email">Correo Electrónico</label>
+                    <input type="email" class="form-control" name="email" id="email" formControlName="Email"
+                      placeholder="Correo Electrónico">
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only" for="password">Contraseña</label>
+                    <input type="password" class="form-control" name="password" id="pass" formControlName="Password"
+                      placeholder="Contraseña">
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid" value="Ingresar"
+                      (click)="loginClick()">Ingresar</button>
+                  </div>
+                </form>
+              </div>
+              <div class="bottom text-center">
+                Nuevo aquí ? <a [routerLink]="['../register']"><b>Regístrate</b></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</header><!-- End Header -->
