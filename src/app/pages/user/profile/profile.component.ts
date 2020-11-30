@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   faWallet = faWallet;
   faUserCircle = faUserCircle;
 
-  patient: any = {};
+  patient: any = {vacio:true};
 
   forma: FormGroup;
   constructor(private formBuilder: FormBuilder, private apiServ: ApiService, private router: Router) { }

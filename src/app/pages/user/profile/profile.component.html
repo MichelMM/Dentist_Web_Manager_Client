@@ -57,7 +57,7 @@
         <input formControlName="RFC" name="" class="form-control" placeholder="RFC" type="text">
       </div> <!-- form-group end.// -->
       <p *ngIf="forma.errors && forma.errors.errRFC">Formato de RFC incorrecto</p>
-      <div *ngIf = "!patient.googleId" class="form-group input-group">
+      <div *ngIf="!patient.googleId && !patient.vacio" class="form-group input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
             <fa-icon [icon]="faLock"></fa-icon>
@@ -65,7 +65,7 @@
         </div>
         <input formControlName="Password" class="form-control" placeholder="Nueva contraseña" type="password">
       </div> <!-- form-group// -->
-      <div  *ngIf = "!patient.googleId" class="form-group input-group">
+      <div *ngIf="!patient.googleId && !patient.vacio" class="form-group input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
             <fa-icon [icon]="faLock"></fa-icon>
