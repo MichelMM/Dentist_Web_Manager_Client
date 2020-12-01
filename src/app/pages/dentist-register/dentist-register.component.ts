@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-dentist-register',
@@ -126,7 +127,8 @@ export class DentistRegisterComponent implements OnInit {
       //Subir imagen
       const formData = new FormData();
       formData.append('image', this.forma.get('fileSource').value);
-      this.http.post(`http://localhost:3000/image`, formData).toPromise().then((respuesta: any) => {
+      
+      this.http.post(`${environment.API_URL}/image`, formData).toPromise().then((respuesta: any) => {
         console.log(`Imagen subida: ${respuesta.location}`)
         console.log("Llamar a crear usuario")
         this.signupService.dentistSignup({
