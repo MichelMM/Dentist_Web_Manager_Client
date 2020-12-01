@@ -30,8 +30,9 @@ export class DentistAppointmentComponent implements OnInit {
   requestAppointments(e): void {
     const todayDate = new Date()
     let todayString = todayDate.toISOString().slice(0,10)
-    console.log(todayString)
+    //console.log(todayString)
     this.apiServ.getToken(e).then(data => {
+      //console.log(data)
       this.apiServ.getDentistbyId(JSON.stringify(data[0].userId)).then(data => {
         this.dentists = data[0];
         this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: data[0]._id, Date:todayString })).then(data => {
@@ -78,12 +79,12 @@ export class DentistAppointmentComponent implements OnInit {
 
   searchFormat() {
     
-    console.log("selector: " + this.selector + ", patientS: " + this.patientS)
+    //console.log("selector: " + this.selector + ", patientS: " + this.patientS)
     if (this.patientS) {
       let patientSearchID;
       this.apiServ.getPatient(JSON.stringify({Name:this.Name,Last_name:this.Last_name})).then(data => {
         patientSearchID = data[0];
-        console.log(patientSearchID)
+        //console.log(patientSearchID)
         if (this.selector == "0") {
           this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id, Date: { $regex: this.month }})).then(data => {
             data.forEach(element => {

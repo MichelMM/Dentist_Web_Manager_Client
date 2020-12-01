@@ -106,7 +106,7 @@ export class AppointmentComponent implements OnInit {
       Date: values.Date,
       Hour: values.Hour,
       Paid: false,
-      images: [],
+      Images: [],
       Description: "",
       Payment_type: "",
       Amount: 0

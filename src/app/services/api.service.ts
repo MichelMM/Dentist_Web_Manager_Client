@@ -62,5 +62,13 @@ export class ApiService {
     }
     return this.http.patch(`${environment.API_URL}/patient`,body,httpOptions).toPromise()
   }
+
+  patchAppointment(body):any{
+    body = JSON.stringify(body)
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type':  'application/json'})
+    }
+    return this.http.patch(`${environment.API_URL}/appointment`,body,httpOptions).toPromise()
+  }
   
 }
