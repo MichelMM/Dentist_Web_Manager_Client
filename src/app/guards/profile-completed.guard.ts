@@ -7,15 +7,21 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProfileCompletedGuard implements CanActivate {
-  constructor(private signupService: SignupService, private router:Router) { }
+  constructor(private signupService: SignupService, private router: Router) { }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let flag = this.signupService.isProfileCompleted()
-    // console.log("localhost")
-    // console.log(flag)
-    if(!flag)this.router.navigate(["/user/profile"])
-    return flag
+    return new Promise<any>((resolve, reject) => {
+      this.signupService.isProfileCompleted().then(res => {
+        console.log("localhost")
+        console.log(res)
+        if (!res) this.router.navigate(["/user/profile"])
+        resolve(res)
+      }).catch(err => {
+        console.log(err)
+        resolve(false)
+      })
+    })
   }
 
 }
