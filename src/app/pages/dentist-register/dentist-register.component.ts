@@ -31,6 +31,7 @@ export class DentistRegisterComponent implements OnInit {
   faAddressCard = faAddressCard;
   faUserCircle = faUserCircle;
 
+  correoDuplicado: boolean = false;
   forma: FormGroup;
   Dias: Array<string> = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
   constructor(
@@ -147,9 +148,12 @@ export class DentistRegisterComponent implements OnInit {
         }).then((res) => {
           if (res.err) {
             console.log("Correo duplicado")
+            document.querySelector("#emailInput").setAttribute("style","border:solid 1px red;")
+            this.correoDuplicado = true
           } else {
             console.log("Usuario creado correctamente:")
-            // console.log(res)
+            document.querySelector("#emailInput").removeAttribute("style")
+            this.correoDuplicado = false
 
             this.loginService.dentistLogin(values).then((token) => {
               console.log("Inicio de sesión correcto, token:")

@@ -21,7 +21,9 @@ export class RegisterComponent implements OnInit {
   faWallet = faWallet;
   faUserCircle = faUserCircle;
 
+  correoDuplicado: boolean = false;
   forma: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private signupService: SignupService,
@@ -80,8 +82,12 @@ export class RegisterComponent implements OnInit {
       }).then((res) => {
         if (res.err) {
           console.log("Correo duplicado")
+          document.querySelector("#emailInput").setAttribute("style","border:solid 1px red;")
+          this.correoDuplicado = true
         } else {
           console.log("Usuario creado correctamente:")
+          document.querySelector("#emailInput").removeAttribute("style")
+          this.correoDuplicado = false
           // console.log(res)
 
           this.loginService.login(values).then((token) => {
