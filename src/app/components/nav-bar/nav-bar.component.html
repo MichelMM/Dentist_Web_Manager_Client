@@ -22,6 +22,7 @@
           <li><a [routerLink]="['Contact']" (click)="click()">Contacto</a></li>
           <li *ngIf="isLoggedIn && userType"><a (click)="click()" [routerLink]="['user/profile']">Editar perfil</a></li>
           <li *ngIf="isLoggedIn && userType"><a (click)="click()" [routerLink]="['user/myAppointment']">Mis citas</a></li>
+          <li *ngIf="isLoggedIn && !userType"><a (click)="click()"  [routerLink]="['dentist/myAppointment']">Mis citas</a></li>
         </ul>
         <!-- Links -->
 
@@ -42,10 +43,11 @@
         <li id="gG"><a [routerLink]="['Gallery']">Galeria</a></li>
         <li id="gF"><a [routerLink]="['FAQ']">FAQ</a></li>
         <li id="gC"><a [routerLink]="['Contact']">Contacto</a></li>
-        <li *ngIf="isLoggedIn" id="dropdown" class="drop-down"><a href="">Mi perfil</a>
+        <li *ngIf="isLoggedIn" id="dropdown" class="drop-down"><a>Mi perfil</a>
           <ul>
             <li><a *ngIf="userType" [routerLink]="['user/profile']">Editar perfil</a></li>
             <li><a *ngIf="userType" [routerLink]="['user/myAppointment']">Mis citas</a></li>
+            <li><a *ngIf="!userType" [routerLink]="['dentist/myAppointment']">Mis citas</a></li>
           </ul>
         </li>
       </ul>

@@ -69,13 +69,6 @@ export class DentistAppointmentComponent implements OnInit {
     console.log(e)
   }
 
-  changeMonth() {
-
-  }
-
-  changeDay() {
-  
-  }
 
   searchFormat() {
     
