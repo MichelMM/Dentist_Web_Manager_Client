@@ -32,7 +32,7 @@ export class DentistRegisterComponent implements OnInit {
   faUserCircle = faUserCircle;
 
   forma: FormGroup;
-  Dias:Array<string>=["Lu","Ma","Mi","Ju","Vi","Sa"]
+  Dias: Array<string> = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
   constructor(
     private formBuilder: FormBuilder,
     private signupService: SignupService,
@@ -107,17 +107,17 @@ export class DentistRegisterComponent implements OnInit {
     const values = this.forma.getRawValue();
     if (this.forma.valid) {
       //Hacer arreglo de horario
-      let Schedule= {}
-      let dias = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-      let diasKey = ["Lu","Ma","Mi","Ju","Vi","Sa"]
-      let citas=[]
-      dias.forEach((dia,index)=>{
+      let Schedule = {}
+      let dias = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+      let diasKey = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
+      let citas = []
+      dias.forEach((dia, index) => {
         citas = []
         let hasta = values[`${diasKey[index]}H`]
         let desde = values[`${diasKey[index]}D`]
-        let numCitas = ((hasta-desde)*2)
+        let numCitas = ((hasta - desde) * 2)
         for (let i = 0; i < numCitas; i++) {
-          citas.push(`${Number(desde)+Math.floor(i/2)}:${i%2==0?"00":"30"}:00`)
+          citas.push(`${Number(desde) + Math.floor(i / 2)}:${i % 2 == 0 ? "00" : "30"}:00`)
         }
         Schedule[dia] = citas
       })
@@ -127,7 +127,7 @@ export class DentistRegisterComponent implements OnInit {
       //Subir imagen
       const formData = new FormData();
       formData.append('image', this.forma.get('fileSource').value);
-      
+
       this.http.post(`${environment.API_URL_NO_API}/image`, formData).toPromise().then((respuesta: any) => {
         console.log(`Imagen subida: ${respuesta.location}`)
         console.log("Llamar a crear usuario")
