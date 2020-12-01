@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from './../../../services/api.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ApiService } from './../../../services/api.service';
 
 export class MyAppointmentsComponent implements OnInit {
 
-  constructor(private apiServ: ApiService) { }
+  constructor(private apiServ: ApiService, private spinner: NgxSpinnerService) { }
 
   appointments: any[] = []
   dentists: any[] = []
@@ -24,28 +25,29 @@ export class MyAppointmentsComponent implements OnInit {
   }
 
   changeMonth() {
-    this.appointDentist.splice(0,this.appointDentist.length);
+    this.appointDentist.splice(0, this.appointDentist.length);
     console.log(this.appointDentist)
     this.appointments.forEach(appointment => {
       let obj = {}
       if (appointment.Date.substr(0, 7) == this.month) {
         obj["Cause"] = appointment.Cause;
-      obj["Date"] = appointment.Date;
-      obj["Hour"] = appointment.Hour;
-      obj["Description"] = appointment.Description;
-      obj["Amount"] = appointment.Amount;
+        obj["Date"] = appointment.Date;
+        obj["Hour"] = appointment.Hour;
+        obj["Description"] = appointment.Description;
+        obj["Amount"] = appointment.Amount;
 
-      obj["Dentist"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Name
-      obj["DentistLN"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Last_name
-      obj["Patient"] = this.patients.Name
-      obj["PatientLN"] = this.patients.Last_name
+        obj["Dentist"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Name
+        obj["DentistLN"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Last_name
+        obj["Patient"] = this.patients.Name
+        obj["PatientLN"] = this.patients.Last_name
         this.appointDentist.push(obj)
       }
-      
+
     });
   }
 
   requestAppointments(e): void {
+    this.spinner.show();
     this.apiServ.getToken(e).then(data => {
       this.apiServ.getPatientbyId(JSON.stringify(data[0].userId)).then(data => {
         this.patients = data[0];
@@ -55,6 +57,7 @@ export class MyAppointmentsComponent implements OnInit {
             this.dentists = data;
             console.log(this.dentists)
             this.getAppointDentist()
+            this.spinner.hide();
           }).catch((e) => {
             console.log(e)
           })

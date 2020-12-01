@@ -5,6 +5,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { Router } from "@angular/router"
 import { SocketIoService } from 'src/app/services/socket-io.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dentist-login',
@@ -20,7 +21,8 @@ export class DentistLoginComponent implements OnInit {
     private authService: AuthService,
     private socket: SocketIoService,
     private toastr:ToastrService,
-    private router: Router) { }
+    private router: Router,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -30,11 +32,13 @@ export class DentistLoginComponent implements OnInit {
   }
 
   login() {
+    this.spinner.show();
     const values = this.form.getRawValue();
     this.loginService.dentistLogin(values).then((token) => {
       console.log("Inicio de sesión correcto, token:")
       console.log(token)
       this.authService.save(token);
+      this.spinner.hide();
       this.router.navigate(["/Home"]);
       this.socket.on('NewAppointment', data =>{
         // console.log('DentistID:',data.dentistId);
