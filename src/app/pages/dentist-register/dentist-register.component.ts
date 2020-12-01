@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dentist-register',
@@ -31,6 +32,7 @@ export class DentistRegisterComponent implements OnInit {
   faAddressCard = faAddressCard;
   faUserCircle = faUserCircle;
 
+  correoDuplicado: boolean = false;
   forma: FormGroup;
   Dias: Array<string> = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa"]
   constructor(
@@ -39,7 +41,8 @@ export class DentistRegisterComponent implements OnInit {
     private loginService: LoginService,
     private authService: AuthService,
     private http: HttpClient,
-    private router: Router) { }
+    private router: Router,
+    private spinner: NgxSpinnerService) { }
 
 
   ngOnInit(): void {
@@ -104,6 +107,7 @@ export class DentistRegisterComponent implements OnInit {
   }
 
   createUser() {
+    this.spinner.show();
     const values = this.forma.getRawValue();
     if (this.forma.valid) {
       //Hacer arreglo de horario
@@ -147,14 +151,19 @@ export class DentistRegisterComponent implements OnInit {
         }).then((res) => {
           if (res.err) {
             console.log("Correo duplicado")
+            document.querySelector("#emailInput").setAttribute("style","border:solid 1px red;")
+            this.correoDuplicado = true
+            this.spinner.hide();
           } else {
             console.log("Usuario creado correctamente:")
-            // console.log(res)
+            document.querySelector("#emailInput").removeAttribute("style")
+            this.correoDuplicado = false
 
             this.loginService.dentistLogin(values).then((token) => {
               console.log("Inicio de sesión correcto, token:")
               console.log(token)
               this.authService.save(token);
+              this.spinner.hide();
               this.router.navigate(["/Home"])
             }).catch((err) => {
               console.log("Error:")

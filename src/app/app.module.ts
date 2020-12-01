@@ -21,6 +21,7 @@ import { RegisterComponent } from './pages/register/register.component';
 
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 'angularx-social-login';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { environment } from 'src/environments/environment';
 import { ProfileComponent } from './pages/user/profile/profile.component';
@@ -62,7 +63,8 @@ import { DialogComponent } from './components/dialog/dialog.component'
     SocialLoginModule,
     ToastrModule.forRoot(),
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxSpinnerModule
   ],
   entryComponents:[DialogComponent],
   providers: [

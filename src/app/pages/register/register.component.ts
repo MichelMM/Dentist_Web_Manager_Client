@@ -7,6 +7,8 @@ import { LoginService } from 'src/app/services/login.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
+import { NgxSpinnerService } from "ngx-spinner";
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -21,13 +23,16 @@ export class RegisterComponent implements OnInit {
   faWallet = faWallet;
   faUserCircle = faUserCircle;
 
+  correoDuplicado: boolean = false;
   forma: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private signupService: SignupService,
     private loginService: LoginService,
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private spinner: NgxSpinnerService) { }
 
 
   ngOnInit(): void {
@@ -66,6 +71,7 @@ export class RegisterComponent implements OnInit {
   }
 
   createUser() {
+    this.spinner.show();
     const values = this.forma.getRawValue();
     if (this.forma.valid) {
       console.log("Llamar a crear usuario")
@@ -80,14 +86,20 @@ export class RegisterComponent implements OnInit {
       }).then((res) => {
         if (res.err) {
           console.log("Correo duplicado")
+          document.querySelector("#emailInput").setAttribute("style","border:solid 1px red;")
+          this.correoDuplicado = true
+          this.spinner.hide();
         } else {
           console.log("Usuario creado correctamente:")
+          document.querySelector("#emailInput").removeAttribute("style")
+          this.correoDuplicado = false
           // console.log(res)
 
           this.loginService.login(values).then((token) => {
             console.log("Inicio de sesión correcto, token:")
             console.log(token)
             this.authService.save(token);
+            this.spinner.hide();
             this.router.navigate(["/Home"])
           }).catch((err) => {
             console.log("Error:")

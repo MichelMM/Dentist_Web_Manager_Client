@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../../services/api.service';
 import { MatDialog } from '@angular/material/dialog'
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dentist-appointment',
@@ -10,7 +11,7 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 })
 export class DentistAppointmentComponent implements OnInit {
 
-  constructor(private apiServ: ApiService, public dialog: MatDialog) { }
+  constructor(private apiServ: ApiService, public dialog: MatDialog, private spinner: NgxSpinnerService) { }
 
   appointments: any[] = [];
   dentists: any = {};
@@ -28,6 +29,7 @@ export class DentistAppointmentComponent implements OnInit {
   }
 
   requestAppointments(e): void {
+    this.spinner.show();
     const todayDate = new Date()
     let todayString = todayDate.toISOString().slice(0,10)
     //console.log(todayString)
@@ -45,6 +47,7 @@ export class DentistAppointmentComponent implements OnInit {
             element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
           });
           this.appointments = data
+          this.spinner.hide();
         }).catch((e) => {
           console.log(e)
         })
@@ -71,7 +74,7 @@ export class DentistAppointmentComponent implements OnInit {
 
 
   searchFormat() {
-    
+    this.spinner.show();
     //console.log("selector: " + this.selector + ", patientS: " + this.patientS)
     if (this.patientS) {
       let patientSearchID;
@@ -89,6 +92,7 @@ export class DentistAppointmentComponent implements OnInit {
               element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
             });
             this.appointments = data
+            this.spinner.hide();
           }).catch((e) => {
             console.log(e)
           })
@@ -103,6 +107,7 @@ export class DentistAppointmentComponent implements OnInit {
               element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
             });
             this.appointments = data
+            this.spinner.hide();
           }).catch((e) => {
             console.log(e)
           })
@@ -117,6 +122,7 @@ export class DentistAppointmentComponent implements OnInit {
               element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
             });
             this.appointments = data
+            this.spinner.hide();
           }).catch((e) => {
             console.log(e)
           })
@@ -140,6 +146,7 @@ export class DentistAppointmentComponent implements OnInit {
             element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
           });
           this.appointments = data
+          this.spinner.hide();
         }).catch((e) => {
           console.log(e)
         })
@@ -154,6 +161,7 @@ export class DentistAppointmentComponent implements OnInit {
             element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
           });
           this.appointments = data
+          this.spinner.hide();
         }).catch((e) => {
           console.log(e)
         })
@@ -168,6 +176,7 @@ export class DentistAppointmentComponent implements OnInit {
             element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
           });
           this.appointments = data
+          this.spinner.hide();
         }).catch((e) => {
           console.log(e)
         })

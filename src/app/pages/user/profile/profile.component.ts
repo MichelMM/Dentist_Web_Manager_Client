@@ -4,6 +4,7 @@ import { faPhone, faLock, faWallet } from '@fortawesome/free-solid-svg-icons'
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 import { ApiService } from './../../../services/api.service';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +23,7 @@ export class ProfileComponent implements OnInit {
   patient: any = {vacio:true};
 
   forma: FormGroup;
-  constructor(private formBuilder: FormBuilder, private apiServ: ApiService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private apiServ: ApiService, private router: Router,private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
 
@@ -42,6 +43,7 @@ export class ProfileComponent implements OnInit {
   }
 
   patchPatient() {
+    this.spinner.show();
     const values = this.forma.getRawValue();
     let body = {
       filter: {
@@ -62,6 +64,7 @@ export class ProfileComponent implements OnInit {
       body.data['Password'] = values.Password;
     }
     this.apiServ.patchPatient(body).then(data => {
+      this.spinner.hide();
       this.router.navigate(["/Home"])
       console.log(data);
     }).catch((e) => {
@@ -70,6 +73,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getPatient(e) {
+    this.spinner.show();
     this.apiServ.getToken(e).then(data => {
       this.apiServ.getPatientbyId(JSON.stringify(data[0].userId)).then(data => {
         this.patient = data[0];
@@ -84,6 +88,7 @@ export class ProfileComponent implements OnInit {
           Password: ["", [Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')]],
           ConfirmPassword: ["", [Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')]]
         });
+        this.spinner.hide();
       }).catch((e) => {
         console.log(e)
       })

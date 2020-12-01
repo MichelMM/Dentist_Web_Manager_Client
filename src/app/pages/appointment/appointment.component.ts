@@ -3,6 +3,7 @@ import { SocketIoService } from 'src/app/services/socket-io.service';
 import { ApiService } from './../../services/api.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class AppointmentComponent implements OnInit {
     private apiServ: ApiService,
     private socket: SocketIoService,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) { }
   dentists: any[] = [];
   patient: any = {};
@@ -77,8 +79,10 @@ export class AppointmentComponent implements OnInit {
   }
 
   getDentists() {
+    this.spinner.show();
     this.apiServ.getDentists().then(data => {
       this.dentists = data
+      this.spinner.hide();
     }).catch((e) => {
       console.log(e);
     })
@@ -86,9 +90,11 @@ export class AppointmentComponent implements OnInit {
 
 
   getPatient(e) {
+    this.spinner.show();
     this.apiServ.getToken(e).then(data => {
       this.apiServ.getPatientbyId(JSON.stringify(data[0].userId)).then(data => {
         this.patient = data[0];
+        this.spinner.hide();
       }).catch((e) => {
         console.log(e)
       })
@@ -98,6 +104,7 @@ export class AppointmentComponent implements OnInit {
   }
 
   sendAppointment() {
+    this.spinner.show();
     const values = this.form.getRawValue();
     let obj = {
       Dentist_ID: values.Dentist_ID,
@@ -119,6 +126,7 @@ export class AppointmentComponent implements OnInit {
         patientLastName: this.patient.Last_name,
         dentistId: obj.Dentist_ID
       });
+      this.spinner.hide();
       this.toastr.success(`Appointment generated! You can ckeck your appointments <a href="/user/myAppointment" target="_blank"><u>here</u></a>`, 'Appointment done!', {
         enableHtml: true
       });

@@ -8,7 +8,7 @@ import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { LoginService } from 'src/app/services/login.service';
 
 import { SocialAuthService, GoogleLoginProvider } from "angularx-social-login";
-
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-nav-bar',
@@ -25,7 +25,14 @@ export class NavBarComponent implements OnInit {
 
   form: FormGroup
   
-  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private loginService: LoginService, private socialAuthService: SocialAuthService) {
+  constructor(
+    private authService: AuthService, 
+    private router: Router, 
+    private formBuilder: FormBuilder, 
+    private loginService: LoginService, 
+    private socialAuthService: SocialAuthService,
+    private spinner: NgxSpinnerService) {
+
     this.authService.loginStatus.subscribe(s => {
       console.log("Login status", s)
       this.isLoggedIn = s
@@ -54,12 +61,14 @@ export class NavBarComponent implements OnInit {
           console.log("Inicio de sesión correcto, token:")
           console.log(token)
           this.authService.save(token);
+          this.spinner.hide();
           this.router.navigate(["/Home"])
         }).catch((err) => {
           console.log("Error:")
           console.log(err)
         })
       }
+      this.spinner.hide();
     });
   }
 
@@ -80,11 +89,13 @@ export class NavBarComponent implements OnInit {
 
 
   login() {
+    this.spinner.show();
     const values = this.form.getRawValue();
     this.loginService.login(values).then((token) => {
       console.log("Inicio de sesión correcto, token:")
       console.log(token)
       this.authService.save(token);
+      this.spinner.hide();
       this.router.navigate(["/Home"])
     }).catch((err) => {
       console.log("Error:")
@@ -93,6 +104,7 @@ export class NavBarComponent implements OnInit {
   }
 
   googleLogin() {
+    this.spinner.show();
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 }

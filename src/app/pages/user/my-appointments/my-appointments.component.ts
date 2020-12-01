@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from './../../../services/api.service';
 import { MatDialog } from '@angular/material/dialog'
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
@@ -11,7 +12,7 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 
 export class MyAppointmentsComponent implements OnInit {
 
-  constructor(private apiServ: ApiService, public dialog: MatDialog) { }
+  constructor(private apiServ: ApiService, private spinner: NgxSpinnerService, public dialog: MatDialog) { }
 
   appointments: any[] = []
   dentists: any[] = []
@@ -50,6 +51,7 @@ export class MyAppointmentsComponent implements OnInit {
   }
 
   requestAppointments(e): void {
+    this.spinner.show();
     this.apiServ.getToken(e).then(data => {
       this.apiServ.getPatientbyId(JSON.stringify(data[0].userId)).then(data => {
         this.patients = data[0];
@@ -59,6 +61,7 @@ export class MyAppointmentsComponent implements OnInit {
             this.dentists = data;
             console.log(this.dentists)
             this.getAppointDentist()
+            this.spinner.hide();
           }).catch((e) => {
             console.log(e)
           })
