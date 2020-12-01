@@ -19,6 +19,8 @@ import { ProfileComponent } from './pages/user/profile/profile.component';
 import { DentistLoginComponent } from './pages/dentist-login/dentist-login.component';
 import { DentistAppointmentComponent } from './pages/user/dentist-appointment/dentist-appointment.component';
 import { ProfileCompletedGuard } from './guards/profile-completed.guard';
+import { IsPatientGuard } from './guards/is-patient.guard';
+import { IsDentistGuard } from './guards/is-dentist.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -29,11 +31,11 @@ const routes: Routes = [
   { path: 'About', component: AboutComponent },
   { path: 'Services', component: ServicesComponent },
   { path: 'Dentists', component: DentistsComponent },
-  { path: 'Appointment', component: AppointmentComponent, canActivate:[AuthGuard, ProfileCompletedGuard]},
-  { path: 'user/myAppointment', component: MyAppointmentsComponent, canActivate:[AuthGuard, ProfileCompletedGuard]},
-  { path: 'user/profile', component: ProfileComponent, canActivate:[AuthGuard]},
-  { path: 'dentist/myAppointment', component: DentistAppointmentComponent},
+  { path: 'Appointment', component: AppointmentComponent, canActivate:[AuthGuard, ProfileCompletedGuard,IsPatientGuard]},
+  { path: 'user/myAppointment', component: MyAppointmentsComponent, canActivate:[AuthGuard, ProfileCompletedGuard,IsPatientGuard]},
+  { path: 'user/profile', component: ProfileComponent, canActivate:[AuthGuard,IsPatientGuard]},
   { path: 'register', component: RegisterComponent, canActivate:[UnauthGuard]},
+  { path: 'dentist/myAppointment', component: DentistAppointmentComponent, canActivate:[AuthGuard,IsDentistGuard]},
   { path: 'dentistRegister', component: DentistRegisterComponent, canActivate:[UnauthGuard]},
   { path: 'dentistLogin', component: DentistLoginComponent, canActivate:[UnauthGuard]},
   { path: '**', component: Page404Component}
