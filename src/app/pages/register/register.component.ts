@@ -78,19 +78,22 @@ export class RegisterComponent implements OnInit {
         RFC: values.RFC,
         Password: values.Password
       }).then((res) => {
-        console.log("Usuario creado correctamente:")
-        console.log(res)
+        if (res.err) {
+          console.log("Correo duplicado")
+        } else {
+          console.log("Usuario creado correctamente:")
+          // console.log(res)
 
-        this.loginService.login(values).then((token) => {
-          console.log("Inicio de sesión correcto, token:")
-          console.log(token)
-          this.authService.save(token);
-          this.router.navigate(["/Home"])
-        }).catch((err) => {
-          console.log("Error:")
-          console.log(err)
-        })
-
+          this.loginService.login(values).then((token) => {
+            console.log("Inicio de sesión correcto, token:")
+            console.log(token)
+            this.authService.save(token);
+            this.router.navigate(["/Home"])
+          }).catch((err) => {
+            console.log("Error:")
+            console.log(err)
+          })
+        }
       }).catch((err) => {
         console.log("Error:")
         console.log(err)
