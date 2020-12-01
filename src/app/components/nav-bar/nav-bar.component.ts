@@ -18,6 +18,7 @@ import { SocialAuthService, GoogleLoginProvider } from "angularx-social-login";
 export class NavBarComponent implements OnInit {
 
   isLoggedIn: boolean = false;
+  userType: boolean = true;
   faBars = faBars
   faFacebook = faFacebook;
   faGoogle = faGoogle;
@@ -28,6 +29,11 @@ export class NavBarComponent implements OnInit {
     this.authService.loginStatus.subscribe(s => {
       console.log("Login status", s)
       this.isLoggedIn = s
+    })
+
+    this.authService.userType.subscribe(s => {
+      console.log("User type: ", s)
+      this.userType = s
     })
   }
 

@@ -20,8 +20,8 @@
           <li><a [routerLink]="['Gallery']" (click)="click()">Galeria</a></li>
           <li><a [routerLink]="['FAQ']" (click)="click()">FAQ</a></li>
           <li><a [routerLink]="['Contact']" (click)="click()">Contacto</a></li>
-          <li *ngIf="isLoggedIn"><a (click)="click()" [routerLink]="['user/profile']">Editar perfil</a></li>
-          <li *ngIf="isLoggedIn"><a (click)="click()" [routerLink]="['user/myAppointment']">Mis citas</a></li>
+          <li *ngIf="isLoggedIn && userType"><a (click)="click()" [routerLink]="['user/profile']">Editar perfil</a></li>
+          <li *ngIf="isLoggedIn && userType"><a (click)="click()" [routerLink]="['user/myAppointment']">Mis citas</a></li>
         </ul>
         <!-- Links -->
 
@@ -44,8 +44,8 @@
         <li id="gC"><a [routerLink]="['Contact']">Contacto</a></li>
         <li *ngIf="isLoggedIn" id="dropdown" class="drop-down"><a href="">Mi perfil</a>
           <ul>
-            <li><a [routerLink]="['user/profile']">Editar perfil</a></li>
-            <li><a [routerLink]="['user/myAppointment']">Mis citas</a></li>
+            <li><a *ngIf="userType" [routerLink]="['user/profile']">Editar perfil</a></li>
+            <li><a *ngIf="userType" [routerLink]="['user/myAppointment']">Mis citas</a></li>
           </ul>
         </li>
       </ul>
