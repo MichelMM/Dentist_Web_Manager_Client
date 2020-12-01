@@ -1,6 +1,6 @@
 <div mat-dialog-content class="Modal">
 
-  <div *ngIf="!appointment.Paid" class="">
+  <div *ngIf="!appointment.Paid && !userType" class="">
     <article>
       <h1 class="card-title mt-3 text-center">Completar la cita</h1>
       <form [formGroup]="form" (submit)="modificarCita()">

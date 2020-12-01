@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../../services/api.service';
+import { MatDialog } from '@angular/material/dialog'
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-my-appointments',
@@ -9,7 +11,7 @@ import { ApiService } from './../../../services/api.service';
 
 export class MyAppointmentsComponent implements OnInit {
 
-  constructor(private apiServ: ApiService) { }
+  constructor(private apiServ: ApiService, public dialog: MatDialog) { }
 
   appointments: any[] = []
   dentists: any[] = []
@@ -24,24 +26,26 @@ export class MyAppointmentsComponent implements OnInit {
   }
 
   changeMonth() {
-    this.appointDentist.splice(0,this.appointDentist.length);
+    this.appointDentist.splice(0, this.appointDentist.length);
     console.log(this.appointDentist)
     this.appointments.forEach(appointment => {
       let obj = {}
       if (appointment.Date.substr(0, 7) == this.month) {
+        obj["_id"] = appointment._id;
+        obj["Paid"] = appointment.Paid;
         obj["Cause"] = appointment.Cause;
-      obj["Date"] = appointment.Date;
-      obj["Hour"] = appointment.Hour;
-      obj["Description"] = appointment.Description;
-      obj["Amount"] = appointment.Amount;
+        obj["Date"] = appointment.Date;
+        obj["Hour"] = appointment.Hour;
+        obj["Description"] = appointment.Description;
+        obj["Amount"] = appointment.Amount;
 
-      obj["Dentist"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Name
-      obj["DentistLN"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Last_name
-      obj["Patient"] = this.patients.Name
-      obj["PatientLN"] = this.patients.Last_name
+        obj["Dentist"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Name
+        obj["DentistLN"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Last_name
+        obj["Patient"] = this.patients.Name
+        obj["PatientLN"] = this.patients.Last_name
         this.appointDentist.push(obj)
       }
-      
+
     });
   }
 
@@ -76,6 +80,8 @@ export class MyAppointmentsComponent implements OnInit {
   getAppointDentist(): void {
     this.appointments.forEach(appointment => {
       let obj = {}
+      obj["_id"] = appointment._id;
+      obj["Paid"] = appointment.Paid;
       obj["Cause"] = appointment.Cause;
       obj["Date"] = appointment.Date;
       obj["Hour"] = appointment.Hour;
@@ -89,6 +95,22 @@ export class MyAppointmentsComponent implements OnInit {
       this.appointDentist.push(obj)
     });
   }
+
+  clickApppointment(e): void {
+    if (e.Paid) {
+      console.log(e)
+      const dialogRef = this.dialog.open(DialogComponent, {
+        data: JSON.stringify(this.appointments.find(element => element._id == e._id)),
+        width: '36%'
+      }
+      );
+      dialogRef.afterClosed().subscribe(res => {
+        console.log(res)
+      })
+      console.log(e)
+    }
+  }
+
 }
 
 

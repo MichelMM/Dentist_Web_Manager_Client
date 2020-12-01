@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 import { ApiService } from './../../services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
+import { AuthService } from "../../services/auth.service"
 
 @Component({
   selector: 'app-dialog',
@@ -15,7 +16,13 @@ export class DialogComponent implements OnInit {
   patient: any = {}
   appointment: any = {}
   correctPatch: any = {}
-  constructor(private http: HttpClient, private formBuilder: FormBuilder, private apiServ: ApiService, public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) public message: string) { }
+  userType: boolean = true;
+  constructor(private authService: AuthService,private http: HttpClient, private formBuilder: FormBuilder, private apiServ: ApiService, public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) public message: string) {
+    this.authService.userType.subscribe(s => {
+      console.log("User type: ", s)
+      this.userType = s
+    })
+   }
 
   ngOnInit(): void {
     this.appointment = JSON.parse(this.message)
