@@ -128,7 +128,7 @@ export class DentistRegisterComponent implements OnInit {
       const formData = new FormData();
       formData.append('image', this.forma.get('fileSource').value);
       
-      this.http.post(`${environment.API_URL}/image`, formData).toPromise().then((respuesta: any) => {
+      this.http.post(`${environment.API_URL_NO_API}/image`, formData).toPromise().then((respuesta: any) => {
         console.log(`Imagen subida: ${respuesta.location}`)
         console.log("Llamar a crear usuario")
         this.signupService.dentistSignup({
