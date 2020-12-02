@@ -12,28 +12,26 @@
       </button>
 
       <!-- Collapsible content -->
-      <ul id="navbarSupportedContent1" class="dropdown-menu">
-        <li>
-          <div class="row">
-            <div class="col-md-12">
-              <ul class="navbar-nav mr-auto">
-                <li class="active"><a [routerLink]="['Home']" (click)="click()">Inicio</a></li>
-                <li><a [routerLink]="['About']" (click)="click()">Sobre nosotros</a></li>
-                <li><a [routerLink]="['Services']" (click)="click()">Servicios</a></li>
-                <li><a [routerLink]="['Dentists']" (click)="click()">Dentista</a></li>
-                <li><a [routerLink]="['Gallery']" (click)="click()">Galeria</a></li>
-                <li><a [routerLink]="['FAQ']" (click)="click()">FAQ</a></li>
-                <li><a [routerLink]="['Contact']" (click)="click()">Contacto</a></li>
-                <li *ngIf="isLoggedIn && userType"><a (click)="click()" [routerLink]="['user/profile']">Editar perfil</a></li>
-                <li *ngIf="isLoggedIn && userType"><a (click)="click()" [routerLink]="['user/myAppointment']">Mis citas</a>
-                </li>
-                <li *ngIf="isLoggedIn && !userType"><a (click)="click()" [routerLink]="['dentist/myAppointment']">Mis
-                    citas</a></li>
-              </ul>
-            </div>
+      <div id="navbarSupportedContent1" class="dropdown-menu" style="margin: 3px">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="navbar-nav mr-auto">
+              <li class="active"><a [routerLink]="['Home']" (click)="click()">Inicio</a></li>
+              <li><a [routerLink]="['About']" (click)="click()">Sobre nosotros</a></li>
+              <li><a [routerLink]="['Services']" (click)="click()">Servicios</a></li>
+              <li><a [routerLink]="['Dentists']" (click)="click()">Dentista</a></li>
+              <li><a [routerLink]="['Gallery']" (click)="click()">Galeria</a></li>
+              <li><a [routerLink]="['FAQ']" (click)="click()">FAQ</a></li>
+              <li><a [routerLink]="['Contact']" (click)="click()">Contacto</a></li>
+              <li *ngIf="isLoggedIn && userType"><a (click)="click()" [routerLink]="['user/profile']">Editar perfil</a></li>
+              <li *ngIf="isLoggedIn && userType"><a (click)="click()" [routerLink]="['user/myAppointment']">Mis citas</a>
+              </li>
+              <li *ngIf="isLoggedIn && !userType"><a (click)="click()" [routerLink]="['dentist/myAppointment']">Mis
+                  citas</a></li>
+            </ul>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
       <!-- Collapsible content -->
     </div>
 

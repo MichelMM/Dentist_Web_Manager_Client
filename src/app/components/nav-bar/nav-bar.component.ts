@@ -10,6 +10,8 @@ import { LoginService } from 'src/app/services/login.service';
 import { SocialAuthService, GoogleLoginProvider } from "angularx-social-login";
 import { NgxSpinnerService } from "ngx-spinner";
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -24,14 +26,15 @@ export class NavBarComponent implements OnInit {
   faGoogle = faGoogle;
 
   form: FormGroup
-  
+
   constructor(
-    private authService: AuthService, 
-    private router: Router, 
-    private formBuilder: FormBuilder, 
-    private loginService: LoginService, 
+    private authService: AuthService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
     private socialAuthService: SocialAuthService,
-    private spinner: NgxSpinnerService) {
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService) {
 
     this.authService.loginStatus.subscribe(s => {
       console.log("Login status", s)
@@ -80,10 +83,10 @@ export class NavBarComponent implements OnInit {
   click() {
     // console.log("Cerrar navbar")
     document.querySelector("#navbarSupportedContent1").setAttribute("class", "navbar-collapse collapse")
-    document.getElementById("dropdown").setAttribute("class","drop-down")
+    document.getElementById("dropdown").setAttribute("class", "drop-down")
   }
 
-  loginClick(){
+  loginClick() {
     document.getElementById("to-hidden").click();
   }
 
@@ -98,8 +101,15 @@ export class NavBarComponent implements OnInit {
       this.spinner.hide();
       this.router.navigate(["/Home"])
     }).catch((err) => {
-      console.log("Error:")
-      console.log(err)
+      if (err.status == 401) {
+        //Contraseña incorrecta
+        this.toastr.error('Contraseña incorrecta', 'Error',{timeOut: 3000,});
+      } else {
+        //Error inseperado
+        this.toastr.error('Vuelva a intentarlo', 'Error',{timeOut: 3000,});
+        console.log("Error:", err)
+      }
+      this.spinner.hide();
     })
   }
 
