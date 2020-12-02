@@ -36,6 +36,12 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit(): void {
+    let today = new Date().toString().slice(0, 16)
+    let newDate = new Date(today)
+    newDate.setFullYear(newDate.getFullYear() - 18);
+
+    document.getElementById("somedate").setAttribute('max', newDate.toISOString().split('T')[0]);
+    
     this.forma = this.formBuilder.group({
       Name: ["", Validators.required],
       Last_name: ["", Validators.required],

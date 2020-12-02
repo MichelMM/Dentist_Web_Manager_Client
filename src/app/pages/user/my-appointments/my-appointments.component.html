@@ -27,9 +27,8 @@
             <h4><b>Dentista:</b> {{item.Dentist}} {{item.DentistLN}}</h4>
             <span><b>Paciente:</b> {{item.Patient}} {{item.PatientLN}}</span>
             <p><b>Causa:</b> {{item.Cause}}</p>
-            <p> <b>Fecha:</b> {{item.Date}}-{{item.Hour}}</p>
-            <p *ngIf="item.Description != '' "> <b>Notas:</b> {{item.Description}}</p>
-            <p *ngIf="item.Amount!=0"> <b>Costo:</b> {{item.Amount}}</p>
+            <p> <b>Fecha:</b> {{item.Date_S}}-{{item.Hour_S}}</p>
+            <h3 *ngIf="item.Paid"> <b>Pagado</b></h3>
           </div>
         </div>
       </div>

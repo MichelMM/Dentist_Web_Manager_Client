@@ -81,54 +81,57 @@ export class DentistAppointmentComponent implements OnInit {
       this.apiServ.getPatient(JSON.stringify({Name:this.Name,Last_name:this.Last_name})).then(data => {
         patientSearchID = data[0];
         //console.log(patientSearchID)
-        if (this.selector == "0") {
-          this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id, Date: { $regex: this.month }})).then(data => {
-            data.forEach(element => {
-              let day = new Date(element.Date)
-              day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
-              element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
-              let hour = new Date()
-              hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
-              element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
-            });
-            this.appointments = data
-            this.spinner.hide();
-          }).catch((e) => {
-            console.log(e)
-          })
-        } else if (this.selector == "1") {
-          this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id, Date: this.day })).then(data => {
-            data.forEach(element => {
-              let day = new Date(element.Date)
-              day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
-              element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
-              let hour = new Date()
-              hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
-              element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
-            });
-            this.appointments = data
-            this.spinner.hide();
-          }).catch((e) => {
-            console.log(e)
-          })
-        } else if (this.selector == "2") {
-          this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id})).then(data => {
-            data.forEach(element => {
-              let day = new Date(element.Date)
-              day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
-              element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
-              let hour = new Date()
-              hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
-              element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
-            });
-            this.appointments = data
-            this.spinner.hide();
-          }).catch((e) => {
-            console.log(e)
-          })
+        console.log(patientSearchID)
+        if(patientSearchID!=undefined){
+          if (this.selector == "0") {
+            this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id, Date: { $regex: this.month }})).then(data => {
+              data.forEach(element => {
+                let day = new Date(element.Date)
+                day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
+                element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
+                let hour = new Date()
+                hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+                element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+              });
+              this.appointments = data
+              this.spinner.hide();
+            }).catch((e) => {
+              console.log(e)
+            })
+          } else if (this.selector == "1") {
+            this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id, Date: this.day })).then(data => {
+              data.forEach(element => {
+                let day = new Date(element.Date)
+                day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
+                element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
+                let hour = new Date()
+                hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+                element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+              });
+              this.appointments = data
+              this.spinner.hide();
+            }).catch((e) => {
+              console.log(e)
+            })
+          } else if (this.selector == "2") {
+            this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id})).then(data => {
+              data.forEach(element => {
+                let day = new Date(element.Date)
+                day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
+                element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
+                let hour = new Date()
+                hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+                element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+              });
+              this.appointments = data
+              this.spinner.hide();
+            }).catch((e) => {
+              console.log(e)
+            })
+          }
+        }else{
+          this.spinner.hide()
         }
-
-
 
 
       }).catch((e) => {
