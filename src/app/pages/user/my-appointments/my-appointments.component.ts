@@ -64,9 +64,9 @@ export class MyAppointmentsComponent implements OnInit {
   requestAppointments(e): void {
     this.spinner.show();
     this.apiServ.getToken(e).then(data => {
-      this.apiServ.getPatientbyId(JSON.stringify(data[0].userId)).then(data => {
+      this.apiServ.getPatientbyId(JSON.stringify(data[0].userId),localStorage.token).then(data => {
         this.patients = data[0];
-        this.apiServ.getAppointmentFilter(JSON.stringify({ Patient_ID: data[0]._id })).then(data => {
+        this.apiServ.getAppointmentFilter(JSON.stringify({ Patient_ID: data[0]._id }),localStorage.token).then(data => {
           this.appointments = data
           this.apiServ.getDentists().then(data => {
             this.dentists = data;
@@ -140,7 +140,7 @@ export class MyAppointmentsComponent implements OnInit {
   deleteAppointment(e){
     console.log(typeof e)
     this.spinner.show();
-    this.apiServ.deleteAppointment(JSON.stringify(e)).then(data=>{
+    this.apiServ.deleteAppointment(JSON.stringify(e),localStorage.token).then(data=>{
       console.log(data)
       this.spinner.hide()
       window.location.reload();

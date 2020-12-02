@@ -47,7 +47,7 @@ export class DialogComponent implements OnInit {
   }
 
   getPatient(e) {
-    this.apiServ.getPatientbyId(JSON.stringify(e)).then(data => {
+    this.apiServ.getPatientbyId(JSON.stringify(e),localStorage.token).then(data => {
       this.patient = data[0];
     }).catch((e) => {
       console.log(e)
@@ -93,7 +93,7 @@ export class DialogComponent implements OnInit {
       }
       //console.log(body)
 
-      this.apiServ.patchAppointment(body).then(data => {
+      this.apiServ.patchAppointment(body,localStorage.token).then(data => {
         this.correctPatch = data;
         this.spinner.hide();
         window.location.reload();

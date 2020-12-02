@@ -66,7 +66,7 @@ export class AppointmentComponent implements OnInit {
       if (todayDate < appDate) {
         let temp = this.dentists.find(dentist => dentist._id == values.Dentist_ID);
         temp = temp.Schedule
-        this.apiServ.getAppointmentFilter(JSON.stringify({ Date: values.Date, Dentist_ID: values.Dentist_ID })).then(data => {
+        this.apiServ.getAppointmentFilter(JSON.stringify({ Date: values.Date, Dentist_ID: values.Dentist_ID }),localStorage.token).then(data => {
           this.appointments = data;
           temp = temp[weekday[appDate.getDay()]]
           for (var i = 0; i < this.appointments.length; i++) {
@@ -96,7 +96,7 @@ export class AppointmentComponent implements OnInit {
   getPatient(e) {
     this.spinner.show();
     this.apiServ.getToken(e).then(data => {
-      this.apiServ.getPatientbyId(JSON.stringify(data[0].userId)).then(data => {
+      this.apiServ.getPatientbyId(JSON.stringify(data[0].userId),localStorage.token).then(data => {
         this.patient = data[0];
         this.spinner.hide();
       }).catch((e) => {
@@ -122,7 +122,7 @@ export class AppointmentComponent implements OnInit {
       Payment_type: "",
       Amount: 0
     }
-    this.apiServ.sendAppointment(obj).then(data => {
+    this.apiServ.sendAppointment(obj,localStorage.token).then(data => {
       console.log(data);
       console.log('Emitiendo appointment con socket...');
       this.socket.emit('appointmentDone', {

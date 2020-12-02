@@ -63,7 +63,7 @@ export class ProfileComponent implements OnInit {
     if (values.Password != "") {
       body.data['Password'] = values.Password;
     }
-    this.apiServ.patchPatient(body).then(data => {
+    this.apiServ.patchPatient(body,localStorage.token).then(data => {
       this.spinner.hide();
       this.router.navigate(["/Home"])
       console.log(data);
@@ -75,7 +75,7 @@ export class ProfileComponent implements OnInit {
   getPatient(e) {
     this.spinner.show();
     this.apiServ.getToken(e).then(data => {
-      this.apiServ.getPatientbyId(JSON.stringify(data[0].userId)).then(data => {
+      this.apiServ.getPatientbyId(JSON.stringify(data[0].userId),localStorage.token).then(data => {
         this.patient = data[0];
         console.log(this.patient)
 

@@ -37,7 +37,7 @@ export class DentistAppointmentComponent implements OnInit {
       //console.log(data)
       this.apiServ.getDentistbyId(JSON.stringify(data[0].userId)).then(data => {
         this.dentists = data[0];
-        this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: data[0]._id, Date:todayString })).then(data => {
+        this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: data[0]._id, Date:todayString }),localStorage.token).then(data => {
           data.forEach(element => {
             let day = new Date(element.Date)
             day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
@@ -82,13 +82,13 @@ export class DentistAppointmentComponent implements OnInit {
     //console.log("selector: " + this.selector + ", patientS: " + this.patientS)
     if (this.patientS) {
       let patientSearchID;
-      this.apiServ.getPatient(JSON.stringify({Name:this.Name,Last_name:this.Last_name})).then(data => {
+      this.apiServ.getPatient(JSON.stringify({Name:this.Name,Last_name:this.Last_name}),localStorage.token).then(data => {
         patientSearchID = data[0];
         //console.log(patientSearchID)
         console.log(patientSearchID)
         if(patientSearchID!=undefined){
           if (this.selector == "0") {
-            this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id, Date: { $regex: this.month }})).then(data => {
+            this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id, Date: { $regex: this.month }}),localStorage.token).then(data => {
               data.forEach(element => {
                 let day = new Date(element.Date)
                 day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
@@ -107,7 +107,7 @@ export class DentistAppointmentComponent implements OnInit {
               console.log(e)
             })
           } else if (this.selector == "1") {
-            this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id, Date: this.day })).then(data => {
+            this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id, Date: this.day }),localStorage.token).then(data => {
               data.forEach(element => {
                 let day = new Date(element.Date)
                 day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
@@ -126,7 +126,7 @@ export class DentistAppointmentComponent implements OnInit {
               console.log(e)
             })
           } else if (this.selector == "2") {
-            this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id})).then(data => {
+            this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Patient_ID:patientSearchID._id}),localStorage.token).then(data => {
               data.forEach(element => {
                 let day = new Date(element.Date)
                 day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
@@ -155,7 +155,7 @@ export class DentistAppointmentComponent implements OnInit {
       })
     } else if (!this.patientS) {
       if (this.selector == "0") {
-        this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Date: { $regex: this.month } })).then(data => {
+        this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Date: { $regex: this.month } }),localStorage.token).then(data => {
           data.forEach(element => {
             let day = new Date(element.Date)
             day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
@@ -174,7 +174,7 @@ export class DentistAppointmentComponent implements OnInit {
           console.log(e)
         })
       } else if (this.selector == "1") {
-        this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Date: this.day })).then(data => {
+        this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Date: this.day }),localStorage.token).then(data => {
           data.forEach(element => {
             let day = new Date(element.Date)
             day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
@@ -193,7 +193,7 @@ export class DentistAppointmentComponent implements OnInit {
           console.log(e)
         })
       } else if (this.selector == "2") {
-        this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Paid:false})).then(data => {
+        this.apiServ.getAppointmentFilter(JSON.stringify({ Dentist_ID: this.dentists._id, Paid:false}),localStorage.token).then(data => {
           data.forEach(element => {
             let day = new Date(element.Date)
             day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))

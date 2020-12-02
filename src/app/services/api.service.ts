@@ -19,32 +19,32 @@ export class ApiService {
     return this.http.get(`${environment.API_URL}/dentist?filter=`+filter).toPromise()
   }
 
-  getAppointmentFilter(filter:string):any{
-    return this.http.get(`${environment.API_URL}/appointment?filter=`+filter).toPromise()
+  getAppointmentFilter(filter:string,token:string):any{
+    return this.http.get(`${environment.API_URL}/appointment?token=${token}&filter=`+filter).toPromise()
   }
 
-  getAppointments():any{
-    return this.http.get(`${environment.API_URL}/appointments`).toPromise()
+  getAppointments(token:string):any{
+    return this.http.get(`${environment.API_URL}/appointments?token=${token}`).toPromise()
   }
 
-  sendAppointment(body):any{  
+  sendAppointment(body,token:string):any{  
     body = JSON.stringify({data:body})
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type':  'application/json'})
     }
-    return this.http.post(`${environment.API_URL}/appointment`,body,httpOptions).toPromise()
+    return this.http.post(`${environment.API_URL}/appointment?token=${token}`,body,httpOptions).toPromise()
   }
 
-  getPatients():any{
-    return this.http.get(`${environment.API_URL}/patients`).toPromise()
+  getPatients(token:string):any{
+    return this.http.get(`${environment.API_URL}/patients?token=${token}`).toPromise()
   }
 
-  getPatient(filter:string):any{
-    return this.http.get(`${environment.API_URL}/patient?filter=`+filter).toPromise()
+  getPatient(filter:string,token:string):any{
+    return this.http.get(`${environment.API_URL}/patient?token=${token}&filter=`+filter).toPromise()
   }
 
-  getPatientbyId(filter:string):any{
-    return this.http.get(`${environment.API_URL}/patientId?filter=`+filter).toPromise()
+  getPatientbyId(filter:string,token:string):any{
+    return this.http.get(`${environment.API_URL}/patientId?token=${token}&filter=`+filter).toPromise()
   }
 
   getDentistbyId(filter:string):any{
@@ -55,24 +55,24 @@ export class ApiService {
     return this.http.get(`${environment.API_URL}/token?filter=`+filter).toPromise()
   }
 
-  patchPatient(body):any{
+  patchPatient(body,token:string):any{
     body = JSON.stringify(body)
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type':  'application/json'})
     }
-    return this.http.patch(`${environment.API_URL}/patient`,body,httpOptions).toPromise()
+    return this.http.patch(`${environment.API_URL}/patient?token=${token}`,body,httpOptions).toPromise()
   }
 
-  patchAppointment(body):any{
+  patchAppointment(body,token:string):any{
     body = JSON.stringify(body)
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type':  'application/json'})
     }
-    return this.http.patch(`${environment.API_URL}/appointment`,body,httpOptions).toPromise()
+    return this.http.patch(`${environment.API_URL}/appointment?token=${token}`,body,httpOptions).toPromise()
   }
 
-  deleteAppointment(filter:string):any{
-    return this.http.delete(`${environment.API_URL}/appointment?filter=`+filter).toPromise()
+  deleteAppointment(filter:string,token:string):any{
+    return this.http.delete(`${environment.API_URL}/appointment?token=${token}&filter=`+filter).toPromise()
   }
 
   
