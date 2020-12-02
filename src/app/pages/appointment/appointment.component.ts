@@ -4,6 +4,7 @@ import { ApiService } from './../../services/api.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class AppointmentComponent implements OnInit {
     private socket: SocketIoService,
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) { }
   dentists: any[] = [];
   patient: any = {};
@@ -127,6 +129,7 @@ export class AppointmentComponent implements OnInit {
         dentistId: obj.Dentist_ID
       });
       this.spinner.hide();
+      this.router.navigate(["/Home"])
       this.toastr.success(`Appointment generated! You can ckeck your appointments <a href="/user/myAppointment" target="_blank"><u>here</u></a>`, 'Appointment done!', {
         enableHtml: true
       });
