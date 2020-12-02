@@ -29,6 +29,9 @@
             <p><b>Causa:</b> {{item.Cause}}</p>
             <p> <b>Fecha:</b> {{item.Date_S}}-{{item.Hour_S}}</p>
             <h3 *ngIf="item.Paid"> <b>Pagado</b></h3>
+            <div class="form-group" *ngIf="!item.Paid">
+              <button type="submit" class="btn btn-primary btn-block" id = "delete-btn" (click)="deleteAppointment(item._id)">Cancelar Cita</button>
+            </div> <!-- form-group// -->
           </div>
         </div>
       </div>

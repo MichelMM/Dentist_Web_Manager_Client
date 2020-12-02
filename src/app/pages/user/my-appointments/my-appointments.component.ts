@@ -3,7 +3,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from './../../../services/api.service';
 import { MatDialog } from '@angular/material/dialog'
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @Component({
@@ -46,7 +45,11 @@ export class MyAppointmentsComponent implements OnInit {
         day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
         obj["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
         let hour = new Date()
-        hour.setHours(appointment.Hour.slice(0, 2), appointment.Hour.slice(3, 5), 0)
+        if(appointment.Hour.length == 7){
+          hour.setHours(appointment.Hour.slice(0, 1), appointment.Hour.slice(2, 4), 0)
+        }else{
+          hour.setHours(appointment.Hour.slice(0, 2), appointment.Hour.slice(3, 5), 0)
+        }
         obj["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
         obj["Dentist"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Name
         obj["DentistLN"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Last_name
@@ -102,7 +105,13 @@ export class MyAppointmentsComponent implements OnInit {
       day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
       obj["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
       let hour = new Date()
-      hour.setHours(appointment.Hour.slice(0, 2), appointment.Hour.slice(3, 5), 0)
+      if(appointment.Hour.length == 7){
+        hour.setHours(appointment.Hour.slice(0, 1), appointment.Hour.slice(2, 4), 0)
+      }else{
+        hour.setHours(appointment.Hour.slice(0, 2), appointment.Hour.slice(3, 5), 0)
+      }
+      
+     
       obj["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
       obj["Dentist"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Name
       obj["DentistLN"] = this.dentists.find(dentist => dentist._id == appointment.Dentist_ID).Last_name
@@ -126,6 +135,19 @@ export class MyAppointmentsComponent implements OnInit {
       })
       //console.log(e)
     }
+  }
+
+  deleteAppointment(e){
+    console.log(typeof e)
+    this.spinner.show();
+    this.apiServ.deleteAppointment(JSON.stringify(e)).then(data=>{
+      console.log(data)
+      this.spinner.hide()
+      window.location.reload();
+    }).catch(e=>{
+      console.log(e)
+    })
+    console.log(e)
   }
 
 }

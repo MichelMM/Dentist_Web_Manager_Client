@@ -70,5 +70,10 @@ export class ApiService {
     }
     return this.http.patch(`${environment.API_URL}/appointment`,body,httpOptions).toPromise()
   }
+
+  deleteAppointment(filter:string):any{
+    return this.http.delete(`${environment.API_URL}/appointment?filter=`+filter).toPromise()
+  }
+
   
 }

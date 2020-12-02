@@ -62,6 +62,7 @@ export class AppointmentComponent implements OnInit {
     weekday[5] = "Friday";
     weekday[6] = "Saturday";
     if (values.Date != "" && values.Dentist_ID != "") {
+      this.spinner.show()
       if (todayDate < appDate) {
         let temp = this.dentists.find(dentist => dentist._id == values.Dentist_ID);
         temp = temp.Schedule
@@ -72,6 +73,7 @@ export class AppointmentComponent implements OnInit {
             temp = temp.filter(element => element != this.appointments[i].Hour)
           }
           this.hour = temp
+          this.spinner.hide()
         }).catch((e) => {
           console.log(e)
         })
@@ -129,7 +131,13 @@ export class AppointmentComponent implements OnInit {
         dentistId: obj.Dentist_ID
       });
       this.spinner.hide();
-      this.router.navigate(["/Home"])
+      this.form = this.formBuilder.group({
+        Dentist_ID: ["", Validators.required],
+        Date: ["", Validators.required],
+        Cause: ["", [Validators.required]],
+        Hour: ["", [Validators.required, , Validators.pattern('^(24:00:00)|((([0-1]?\\d)|(2[0-3])):[0-5]\\d:[0-5]\\d)$')]]
+      })
+      //this.router.navigate(["/Home"])
       this.toastr.success(`Appointment generated! You can ckeck your appointments <a href="/user/myAppointment" target="_blank"><u>here</u></a>`, 'Appointment done!', {
         enableHtml: true
       });

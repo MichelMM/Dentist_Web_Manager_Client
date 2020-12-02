@@ -43,7 +43,11 @@ export class DentistAppointmentComponent implements OnInit {
             day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
             element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
             let hour = new Date()
-            hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+            if(element.Hour.length == 7){
+              hour.setHours(element.Hour.slice(0, 1), element.Hour.slice(2, 4), 0)
+            }else{
+              hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+            }
             element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
           });
           this.appointments = data
@@ -90,7 +94,11 @@ export class DentistAppointmentComponent implements OnInit {
                 day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
                 element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
                 let hour = new Date()
-                hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+                if(element.Hour.length == 7){
+                  hour.setHours(element.Hour.slice(0, 1), element.Hour.slice(2, 4), 0)
+                }else{
+                  hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+                }
                 element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
               });
               this.appointments = data
@@ -105,7 +113,11 @@ export class DentistAppointmentComponent implements OnInit {
                 day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
                 element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
                 let hour = new Date()
-                hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+                if(element.Hour.length == 7){
+                  hour.setHours(element.Hour.slice(0, 1), element.Hour.slice(2, 4), 0)
+                }else{
+                  hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+                }
                 element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
               });
               this.appointments = data
@@ -120,7 +132,11 @@ export class DentistAppointmentComponent implements OnInit {
                 day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
                 element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
                 let hour = new Date()
-                hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+                if(element.Hour.length == 7){
+                  hour.setHours(element.Hour.slice(0, 1), element.Hour.slice(2, 4), 0)
+                }else{
+                  hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+                }
                 element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
               });
               this.appointments = data
@@ -145,7 +161,11 @@ export class DentistAppointmentComponent implements OnInit {
             day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
             element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
             let hour = new Date()
-            hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+            if(element.Hour.length == 7){
+              hour.setHours(element.Hour.slice(0, 1), element.Hour.slice(2, 4), 0)
+            }else{
+              hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+            }
             element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
           });
           this.appointments = data
@@ -160,7 +180,11 @@ export class DentistAppointmentComponent implements OnInit {
             day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
             element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
             let hour = new Date()
-            hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+            if(element.Hour.length == 7){
+              hour.setHours(element.Hour.slice(0, 1), element.Hour.slice(2, 4), 0)
+            }else{
+              hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+            }
             element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
           });
           this.appointments = data
@@ -175,7 +199,11 @@ export class DentistAppointmentComponent implements OnInit {
             day.setTime(day.getTime() + (day.getTimezoneOffset() * 60000))
             element["Date_S"] = day.toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' })
             let hour = new Date()
-            hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+            if(element.Hour.length == 7){
+              hour.setHours(element.Hour.slice(0, 1), element.Hour.slice(2, 4), 0)
+            }else{
+              hour.setHours(element.Hour.slice(0, 2), element.Hour.slice(3, 5), 0)
+            }
             element["Hour_S"] = hour.toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
           });
           this.appointments = data
