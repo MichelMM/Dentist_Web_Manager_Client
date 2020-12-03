@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from "../../environments/environment"
 import { AuthService } from "./auth.service"
-import { ApiService } from 'Dentist-Web-Manager-Client/src/app/services/api.service';
 import { element } from 'protractor';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class SignupService {
     return new Promise<any>((resolve, reject) => {
       let flag = true
       this.authService.getUserLogged().then(data => {
-        this.apiService.getPatientbyId(JSON.stringify(data[0].userId)).then(data => {
+        this.apiService.getPatientbyId(JSON.stringify(data[0].userId),localStorage.token).then(data => {
           console.log(data[0])
           const profileProps = ["Name", "Last_name", "Email", "Phone_number", "Birth_date", "RFC"]
           profileProps.forEach(element => {
