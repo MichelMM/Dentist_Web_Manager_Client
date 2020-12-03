@@ -16,7 +16,7 @@
             <fa-icon [icon]="faUser"></fa-icon>
           </span>
         </div>
-        <input formControlName="Name" name="" class="form-control" placeholder="Nombre" type="text">
+        <input formControlName="Name" name="" class="form-control" placeholder="Nombre" type="text" id="formName">
       </div> <!-- form-group// -->
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -24,7 +24,7 @@
             <fa-icon [icon]="faUserCircle"></fa-icon>
           </span>
         </div>
-        <input formControlName="Last_name" name="" class="form-control" placeholder="Apellidos" type="text">
+        <input formControlName="Last_name" name="" class="form-control" placeholder="Apellidos" type="text" id="formLName">
       </div> <!-- form-group// -->
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -41,7 +41,7 @@
             <fa-icon [icon]="faPhone"></fa-icon>
           </span>
         </div>
-        <input formControlName="Phone_number" name="" class="form-control" placeholder="Número Telefónico" type="text">
+        <input formControlName="Phone_number" name="" class="form-control" placeholder="Número Telefónico" type="text" id="formPhone"> 
       </div> <!-- form-group// -->
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -57,7 +57,7 @@
             <fa-icon [icon]="faWallet"></fa-icon>
           </span>
         </div>
-        <input formControlName="RFC" name="" class="form-control" placeholder="RFC" type="text">
+        <input formControlName="RFC" name="" class="form-control" placeholder="RFC" type="text" id="formRFC">
       </div> <!-- form-group end.// -->
       <div *ngIf="forma.errors && forma.errors.errRFC" class="alert alert-danger" role="alert">Formato de RFC incorrecto</div>
       <div class="form-group input-group">
@@ -66,7 +66,7 @@
             <fa-icon [icon]="faLock"></fa-icon>
           </span>
         </div>
-        <input formControlName="Password" class="form-control" placeholder="Contraseña" type="password">
+        <input formControlName="Password" class="form-control" placeholder="Contraseña" type="password" id="formPass">
       </div> <!-- form-group// -->
       <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -74,11 +74,11 @@
             <fa-icon [icon]="faLock"></fa-icon>
           </span>
         </div>
-        <input formControlName="ConfirmPassword" class="form-control" placeholder="Repetir Contraseña" type="password">
+        <input formControlName="ConfirmPassword" class="form-control" placeholder="Repetir Contraseña" type="password" id = "formPassC">
       </div> <!-- form-group// -->
       <div *ngIf="forma.errors && forma.errors.mismatch" class="alert alert-danger" role="alert">Las contraseñas no coinciden</div>
       <div class="form-group">
-        <button [disabled]="forma.invalid" type="submit" class="btn btn-primary btn-block"> Crear cuenta </button>
+        <button [disabled]="forma.invalid" type="submit" class="btn btn-primary btn-block" id="formButtonR"> Crear cuenta </button>
       </div> <!-- form-group// -->
     </form>
   </article>
