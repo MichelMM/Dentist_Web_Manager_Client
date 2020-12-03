@@ -10,10 +10,10 @@
     <div class="heading">Ingresar</div>
     <div class="left">
       <label for="email">Correo Electrónico</label> <br />
-      <input type="email" name="email" id="email" formControlName="Email" /> <br />
+      <input type="email" name="email" id="emailL" formControlName="Email" /> <br />
       <label for="password">Contraseña</label> <br />
-      <input type="password" name="password" id="pass" formControlName="Password" /> <br />
-      <input type="submit" [disabled]="form.invalid" value="Ingresar" />
+      <input type="password" name="password" id="passL" formControlName="Password" /> <br />
+      <input type="submit" [disabled]="form.invalid" value="Ingresar" id ="loginDentist"/>
       <a [routerLink]="['../dentistRegister']"><input style="margin-left: 10px;" type="submit" value="Registro" /></a>
     </div>
     <div class="right">

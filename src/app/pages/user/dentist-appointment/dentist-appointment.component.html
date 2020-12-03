@@ -11,23 +11,23 @@
   <div>
     <label class="radio-inline"><input [(ngModel)]="selector" type="radio" name="optradio" [value]="2" checked> Sin
       busqueda por calendario&nbsp;&nbsp;</label>
-    <label class="radio-inline"><input [(ngModel)]="selector" type="radio" name="optradio" [value]="0">Buscar por mes
+    <label class="radio-inline"><input [(ngModel)]="selector" type="radio" name="optradio" [value]="0" >Buscar por mes
       &nbsp;&nbsp;</label>
     <label class="radio-inline"><input [(ngModel)]="selector" type="radio" name="optradio" [value]="1"> Buscar por
       día&nbsp;&nbsp;</label>
-    <label class="radio-inline"><input [(ngModel)]="patientS" type="checkbox" name="optradio"> Buscar por
+    <label class="radio-inline"><input [(ngModel)]="patientS" type="checkbox" name="optradio" id ="nameSearch"> Buscar por
       paciente</label>
   </div>
 
   <div class="form-row">
     <div *ngIf="patientS==true" class="col-md-4 form-group">
       <!-- form-group// -->
-      <input [(ngModel)]="Name" type="text" name="someuser" class="form-control" placeholder="Nombre(s)">
+      <input [(ngModel)]="Name" type="text" name="someuser" class="form-control" placeholder="Nombre(s)" id="NAME">
       <div class="validate"></div>
     </div><!-- form-group end.// -->
     <div *ngIf="patientS==true" class="col-md-4 form-group">
       <!-- form-group// -->
-      <input [(ngModel)]="Last_name" type="text" name="someuserLN" class="form-control" placeholder="Apellidos">
+      <input [(ngModel)]="Last_name" type="text" name="someuserLN" class="form-control" placeholder="Apellidos" id="LNAME">
       <div class="validate"></div>
     </div><!-- form-group end.// -->
     <div *ngIf="selector=='0'" class="col-md-4 form-group">
@@ -43,7 +43,7 @@
     </div><!-- form-group end.// -->
     <div class="text-center">
       <!-- form-group// -->
-      <button class="buttonLOL" (click)="searchFormat()" type="submit">Buscar</button>
+      <button class="buttonLOL" (click)="searchFormat()" type="submit" id="BUTTON">Buscar</button>
     </div><!-- form-group end.// -->
 
   </div>
@@ -53,8 +53,8 @@
 <section class="doctors">
   <div class="container">
     <div class="row">
-      <div *ngFor="let item of appointments" class="col-lg-6">
-        <div class="member d-flex align-items-start hightlight" (click)="clickApppointment(item._id)">
+      <div *ngFor="let item of appointments" class="col-lg-6" id="gridAppointment">
+        <div class="member d-flex align-items-start hightlight" (click)="clickApppointment(item._id)" >
           <div class="member-info">
             <h4>{{item.Date_S}}</h4>
             <h2>{{item.Hour_S}}</h2>
