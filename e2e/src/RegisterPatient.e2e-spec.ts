@@ -17,10 +17,11 @@ describe('workspace-project App', () => {
         let logoutbtn = element(by.id("logoutbtn"))
         logoutbtn.click()
         browser.sleep(2000)
+        browser.waitForAngularEnabled(false)
         const goToRegister = element(by.id('goToRegister'))
         goToRegister.click()
-        browser.waitForAngularEnabled(false)
-        browser.sleep(2000)
+        
+        browser.sleep(4000)
         const formName = element(by.id('formName'))
         const formDate = element(by.id("somedate"))
         const formLName = element(by.id('formLName'))
