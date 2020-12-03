@@ -15,6 +15,9 @@ describe('workspace-project App', () => {
 
     it('should not login', () => {
         browser.waitForAngularEnabled(false)
+        let logoutbtn = element(by.id("logoutbtn"))
+        logoutbtn.click()
+
         const dropDownLogin = element(by.id("to-hidden"))
         const email = element(by.id("email"))
         const pass = element(by.id("pass"))
@@ -25,7 +28,6 @@ describe('workspace-project App', () => {
         pass.sendKeys("Cisco1213")
         loginbtn.click()
         browser.sleep(3000)
-        let logoutbtn = element(by.id("logoutbtn"))
         expect(logoutbtn.isPresent()).toBeFalsy()
     });
     

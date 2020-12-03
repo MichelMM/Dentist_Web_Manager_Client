@@ -14,6 +14,9 @@ describe('workspace-project App', () => {
     });
     
     it('should register', () => {
+        let logoutbtn = element(by.id("logoutbtn"))
+        logoutbtn.click()
+        browser.sleep(2000)
         const goToRegister = element(by.id('goToRegister'))
         goToRegister.click()
         browser.waitForAngularEnabled(false)
@@ -30,7 +33,7 @@ describe('workspace-project App', () => {
         formName.sendKeys('Aurelio') 
         formDate.sendKeys('1997-02-23') 
         formLName.sendKeys('Aureliano Aureliado') 
-        emailInput.sendKeys('au.au.au@test.com') 
+        emailInput.sendKeys('au.au.au@tesata.com') 
         formPhone.sendKeys('3349658831') 
         formRFC.sendKeys('AAAU9902022G4') 
         formPass.sendKeys('Cisco123') 

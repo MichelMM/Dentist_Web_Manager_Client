@@ -55,11 +55,11 @@
       </div>
 
       <div class="form-group"><!-- form-group// -->
-        <textarea formControlName="Cause" class="form-control" name="message" rows="5"
+        <textarea id="cause" formControlName="Cause" class="form-control" name="message" rows="5"
           placeholder="Inserte aquí el motivo, trate de ser lo más descriptivo posible"></textarea>
         <div class="validate"></div>
       </div><!-- form-group end.// -->
-      <div class="text-center" ><button type="submit" [disabled]="form.invalid">Hacer cita</button></div>
+      <div class="text-center" ><button id="btnsubmit" type="submit" [disabled]="form.invalid">Hacer cita</button></div>
     </form>
 
   </div>
