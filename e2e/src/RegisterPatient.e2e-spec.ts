@@ -16,8 +16,8 @@ describe('workspace-project App', () => {
     it('should register', () => {
         let logoutbtn = element(by.id("logoutbtn"))
         logoutbtn.click()
-        browser.sleep(2000)
         browser.waitForAngularEnabled(false)
+        browser.sleep(2000)
         const goToRegister = element(by.id('goToRegister'))
         goToRegister.click()
         
